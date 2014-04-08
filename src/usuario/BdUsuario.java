@@ -6,7 +6,7 @@
 package usuario;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import vo.usuario;
+import usuario.usuario;
 public class BdUsuario extends bd.Bd{
     public BdUsuario(){
         try{
@@ -51,7 +51,7 @@ public class BdUsuario extends bd.Bd{
     public usuario localiza(String login, String senha){
         //tipo='" + tipo + "'
         String sql = "select login,senha,tipo from usuario where login='" + login + "' and senha='" + senha + "'";
-        vo.usuario registro = new usuario();
+        usuario registro = new usuario();
         try{
             Statement st = getCon().createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -69,7 +69,7 @@ public class BdUsuario extends bd.Bd{
     }
     public usuario localizaMail(String email){
         String sql = "select email,login,senha from usuario where email = '" + email + "'";
-        vo.usuario registro = new usuario();
+        usuario registro = new usuario();
         try{
             Statement st = getCon().createStatement();
             ResultSet rs = st.executeQuery(sql);

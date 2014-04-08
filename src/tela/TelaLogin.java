@@ -23,10 +23,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.apache.commons.mail.DefaultAuthenticator;
+//import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+
 public class TelaLogin extends javax.swing.JFrame {
-    BdUsuarios bd = new BdUsuarios();
+    BdUsuario bd = new BdUsuario();
     
     /**
      * Creates new form TelaLogin
@@ -145,13 +147,13 @@ public static String usertipo = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         usuario result = bd.localiza(tLogin.getText(), String.valueOf(tSenha.getPassword()));
         if(tLogin.getText().equals(result.getLogin()) & String.valueOf(tSenha.getPassword()).equals(result.getSenha())){
-            userativo = (result.getLogin());
-            usertipo = result.getTipo();
-            telaHome t = new telaHome();
-            t.setVisible(true);
-            this.dispose();
+           // userativo = (result.getLogin());
+            //usertipo = result.getTipo();
+            //telaHome t = new telaHome();
+            //t.setVisible(true);
+            //this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
+            //JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
         }       
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -172,13 +174,13 @@ public static String usertipo = null;
         if( tecla == KeyEvent.VK_ENTER){
             usuario result = bd.localiza(tLogin.getText(), String.valueOf(tSenha.getPassword()));
             if(tLogin.getText().equals(result.getLogin()) & String.valueOf(tSenha.getPassword()).equals(result.getSenha())){
-                userativo = (result.getLogin());
-                usertipo = result.getTipo();
-                telaHome t = new telaHome();
-                t.setVisible(true);
-                this.dispose();
+                //userativo = (result.getLogin());
+                //usertipo = result.getTipo();
+                //telaHome t = new telaHome();
+                //t.setVisible(true);
+                //this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
+                //JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
             }
         }
     }//GEN-LAST:event_tSenhaKeyPressed
