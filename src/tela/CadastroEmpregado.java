@@ -6,12 +6,14 @@
 
 package tela;
 
+import Empregado.Empregado;
+
 /**
  *
  * @author Robsonzinho
  */
 public class CadastroEmpregado extends javax.swing.JFrame {
-
+    private Empregado empregado;
     /**
      * Creates new form CadastroEmpregado
      */
@@ -458,11 +460,11 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 150, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -488,8 +490,8 @@ public class CadastroEmpregado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -536,7 +538,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         } else {
             bd.atualiza(getFuncionario());
         }
-        bd.fechar();
+        bd.fecha();
         this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -545,7 +547,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void bCadastroTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastroTelefoneActionPerformed
-        // TODO add your handling code here:
+        CadastroTelefone t = new CadastroTelefone();
+        t.setCpf(empregado.getCpf());
+        t.setNome(empregado.getNome());
+        t.setVisible(true);
     }//GEN-LAST:event_bCadastroTelefoneActionPerformed
 
     /**

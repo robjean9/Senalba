@@ -6,18 +6,33 @@
 
 package tela;
 
+import Util.Telefone.BdTelefone;
+import Util.Telefone.Telefone;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Breus
  */
 public class CadastroTelefone extends javax.swing.JFrame {
-
+    private Telefone tel;
+    private String cpf;
+    private String nome;
     /**
      * Creates new form CadastroTelefone
      */
     public CadastroTelefone() {
         initComponents();
+        
     }
+    
+    private void telaToTelefone(){
+        tel.setCpf_empregado(getCpf());
+        tel.setTelefone(tFone.getText());
+        tel.setTipo((String)cmbTipo.getSelectedItem());
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +48,7 @@ public class CadastroTelefone extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lAssociado = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox();
-        txtFone = new javax.swing.JFormattedTextField();
+        tFone = new javax.swing.JFormattedTextField();
         bSalva = new javax.swing.JButton();
         bCancela = new javax.swing.JButton();
 
@@ -48,20 +63,30 @@ public class CadastroTelefone extends javax.swing.JFrame {
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Residencial", "Celular", "Trabalho" }));
 
         try {
-            txtFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            tFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtFone.setToolTipText("Digite o DDD e depois o número, sem dar espaços.");
-        txtFone.addActionListener(new java.awt.event.ActionListener() {
+        tFone.setToolTipText("Digite o DDD e depois o número, sem dar espaços.");
+        tFone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFoneActionPerformed(evt);
+                tFoneActionPerformed(evt);
             }
         });
 
         bSalva.setText("Salvar");
+        bSalva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvaActionPerformed(evt);
+            }
+        });
 
         bCancela.setText("Cancelar");
+        bCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,23 +98,24 @@ public class CadastroTelefone extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bSalva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bCancela))
+                        .addComponent(bCancela)
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lAssociado, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tFone, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 141, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lAssociado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +127,7 @@ public class CadastroTelefone extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -116,9 +142,22 @@ public class CadastroTelefone extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFoneActionPerformed
+    private void tFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFoneActionPerformed
+    }//GEN-LAST:event_tFoneActionPerformed
+
+    private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
+        telaToTelefone();
+        BdTelefone bdt = new BdTelefone();
+            bdt.insere(tel);
+        bdt.fecha();
+        JOptionPane.showMessageDialog(null, "Telefone Cadastrado com sucesso!");
+        this.dispose();
+    }//GEN-LAST:event_bSalvaActionPerformed
+
+    private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +202,35 @@ public class CadastroTelefone extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lAssociado;
-    private javax.swing.JFormattedTextField txtFone;
+    private javax.swing.JFormattedTextField tFone;
     // End of variables declaration//GEN-END:variables
+
+    
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 }

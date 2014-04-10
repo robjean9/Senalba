@@ -36,6 +36,13 @@ public class Bd {
        }
    }
 
+   public void fecha(){
+       try {
+           con.close();
+       } catch (SQLException e) {
+           this.setErro("Erro ao fechar Conexão\n"+e.getMessage());
+       }
+   }
 
 
 
