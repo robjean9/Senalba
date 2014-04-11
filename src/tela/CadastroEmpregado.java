@@ -74,6 +74,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         tabTelefone2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Empregado - SindSócio");
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificação"));
 

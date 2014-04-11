@@ -53,6 +53,7 @@ public class CadastroTelefone extends javax.swing.JFrame {
         bCancela = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Telefone - SindSócio");
 
         jLabel1.setText("Telefone");
 
@@ -156,7 +157,7 @@ public class CadastroTelefone extends javax.swing.JFrame {
     }//GEN-LAST:event_bSalvaActionPerformed
 
     private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
-        this.dispose();
+    this.dispose();
     }//GEN-LAST:event_bCancelaActionPerformed
 
     /**
