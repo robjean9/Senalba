@@ -547,7 +547,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
 
     private void txtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComplementoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            tab.setSelectedIndex(1);
+            tabTelefone2.setSelectedIndex(1);
         }
     }//GEN-LAST:event_txtComplementoKeyPressed
 

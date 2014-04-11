@@ -19,9 +19,9 @@ public class Bd {
    private String erro;
    public Bd(){
        this.setDriver("com.mysql.jdbc.Driver");
-       this.setUrl("jdbc:mysql://rankposto.sytes.net/Senalba");
-       this.setUsuario("senalba");
-       this.setSenha("admin");
+       this.setUrl("jdbc:mysql://25.143.32.32/pma/Senalba");
+       this.setUsuario("admin");
+       this.setSenha("barekode");
        this.setErro("");
        this.setCon(null);
    }
