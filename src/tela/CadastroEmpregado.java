@@ -6,21 +6,67 @@
 
 package tela;
 
+import Empregado.BdEmpregado;
 import Empregado.Empregado;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Robsonzinho
  */
 public class CadastroEmpregado extends javax.swing.JFrame {
-    private Empregado empregado;
+    private Empregado empregado = new Empregado();
+    private boolean novo;
+    private BdEmpregado bd;
     /**
      * Creates new form CadastroEmpregado
      */
     public CadastroEmpregado() {
         initComponents();
+        bd = new BdEmpregado();
     }
-
+        private void telaToCliente() {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            empregado.setData(Calendar.getInstance());
+            empregado.getData().setTime(sdf.parse(txtData.getText()));
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Erro de conversão de data");
+        }
+        empregado.setNome(txtNome.getText());
+        empregado.setRG(txtRG.getText());
+        empregado.setCPF(txtCPF.getText());
+        empregado.setEndereco(txtEndereco.getText());
+        empregado.setEstado((String) tEstado.getSelectedItem());
+        empregado.setCEP(txtCEP.getText());
+        empregado.setCidade(txtCidade.getText());
+        empregado.setBairro(txtBairro.getText());
+        empregado.setComplemento(txtComplemento.getText());
+        empregado.setDEP15((int) nDep15.getSelectedItem());
+        empregado.setDEP1((int) nDep1.getSelectedItem());
+        empregado.setSalario1(Double.parseDouble(txtSalario1.getText()));
+        }
+        private void clienteToTela() {
+        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
+        txtData.setText(s.format(empregado.getData()));
+        txtNome.setText(empregado.getNome());
+        txtRG.setText(empregado.getRG());
+        txtCPF.setText(empregado.getCPF());
+        txtEndereco.setText(empregado.getEndereco());
+        tEstado.setSelectedItem( empregado.getEstado());
+        txtCEP.setText(empregado.getCPF());
+        txtCidade.setText(empregado.getCidade());
+        txtBairro.setText(empregado.getBairro());
+        txtComplemento.setText(empregado.getComplemento());
+        nDep15.setSelectedItem(empregado.getDEP15());
+        nDep1.setSelectedItem(empregado.getDEP1());
+        txtSalario1.setText(Double.toString(empregado.getSalario1()));
+    }
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,8 +113,6 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         bCadastroTelefone = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabTelefone = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabTelefone2 = new javax.swing.JTable();
@@ -160,6 +204,12 @@ public class CadastroEmpregado extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCEP.setToolTipText("Insira o CEP sem espaços.");
+
+        tEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tEstadoActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Estado");
 
@@ -265,6 +315,12 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         bNao1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 bNao1ItemStateChanged(evt);
+            }
+        });
+
+        txtSalario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSalario1ActionPerformed(evt);
             }
         });
 
@@ -422,19 +478,6 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        tabTelefone.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Tipo", "Telefone"
-            }
-        ));
-        jScrollPane1.setViewportView(tabTelefone);
-
         tabTelefone2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -479,15 +522,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -495,7 +533,8 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1012, 487));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
@@ -535,11 +574,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         telaToCliente();
         if (isNovo()){
-            bd.insere(getFuncionario());
+            getBd().insere(empregado);
         } else {
-            bd.atualiza(getFuncionario());
+            getBd().atualiza(empregado);
         }
-        bd.fecha();
         this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -549,10 +587,18 @@ public class CadastroEmpregado extends javax.swing.JFrame {
 
     private void bCadastroTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastroTelefoneActionPerformed
         CadastroTelefone t = new CadastroTelefone();
-        t.setCpf(empregado.getCpf());
-        t.setNome(empregado.getNome());
+        t.setCpf(getEmpregado().getCPF());
+        t.setNome(getEmpregado().getNome());
         t.setVisible(true);
     }//GEN-LAST:event_bCadastroTelefoneActionPerformed
+
+    private void tEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tEstadoActionPerformed
+
+    private void txtSalario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalario1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSalario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,12 +661,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox nDep1;
     private javax.swing.JComboBox nDep15;
     private javax.swing.JComboBox tEstado;
-    private javax.swing.JTable tabTelefone;
     private javax.swing.JTable tabTelefone2;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
@@ -633,4 +677,46 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtRG;
     private javax.swing.JTextField txtSalario1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the empregado
+     */
+    public Empregado getEmpregado() {
+        return empregado;
+    }
+
+    /**
+     * @param empregado the empregado to set
+     */
+    public void setEmpregado(Empregado empregado) {
+        this.empregado = empregado;
+    }
+
+    /**
+     * @return the novo
+     */
+    public boolean isNovo() {
+        return novo;
+    }
+
+    /**
+     * @param novo the novo to set
+     */
+    public void setNovo(boolean novo) {
+        this.novo = novo;
+    }
+
+    /**
+     * @return the bd
+     */
+    public BdEmpregado getBd() {
+        return bd;
+    }
+
+    /**
+     * @param bd the bd to set
+     */
+    public void setBd(BdEmpregado bd) {
+        this.bd = bd;
+    }
 }
