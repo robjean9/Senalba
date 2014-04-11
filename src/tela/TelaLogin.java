@@ -34,8 +34,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     public TelaLogin() {
-       URL url = this.getClass().getResource("/Image/icon.png");  
-        //ícone na barra superior e barra de tarefas
+       URL url = this.getClass().getResource("/img/icon.png");  
        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
        this.setIconImage(imagemTitulo); 
         initComponents();
