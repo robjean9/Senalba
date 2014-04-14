@@ -28,6 +28,7 @@ public class Empregado {
     private int DEP1;
     private Double Salario1;
     private Calendar Data;
+    private String Sexo;
 
     /**
      * @return the Nome
@@ -228,6 +229,20 @@ public class Empregado {
      */
     public void setDEP1(int DEP1) {
         this.DEP1 = DEP1;
+    }
+
+    /**
+     * @return the Sexo
+     */
+    public String getSexo() {
+        return Sexo;
+    }
+
+    /**
+     * @param Sexo the Sexo to set
+     */
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
     }
 
 

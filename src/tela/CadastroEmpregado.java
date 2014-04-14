@@ -49,6 +49,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         empregado.setDEP15((int) nDep15.getSelectedItem());
         empregado.setDEP1((int) nDep1.getSelectedItem());
         empregado.setSalario1(Double.parseDouble(txtSalario1.getText()));
+        empregado.setSexo(tSexo.getSelectedItem().toString().substring(0,1));
         }
         private void clienteToTela() {
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
@@ -65,6 +66,8 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         nDep15.setSelectedItem(empregado.getDEP15());
         nDep1.setSelectedItem(empregado.getDEP1());
         txtSalario1.setText(Double.toString(empregado.getSalario1()));
+        tSexo.setSelectedItem(empregado.getSexo()=="M"?"Masculino":"Feminino");
+        tSexo.setText(empregado.getSexo);
     }
        
     /**
@@ -84,6 +87,8 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtCPF = new javax.swing.JFormattedTextField();
         jLabel18 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        tSexo = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         txtEndereco = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -153,6 +158,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
 
         jLabel18.setText("CPF");
 
+        jLabel1.setText("Sexo:");
+
+        tSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -170,7 +179,13 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                             .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(txtNome)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNome)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -187,7 +202,11 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
@@ -205,6 +224,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         }
         txtCEP.setToolTipText("Insira o CEP sem espaços.");
 
+        tEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins" }));
         tEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tEstadoActionPerformed(evt);
@@ -217,6 +237,11 @@ public class CadastroEmpregado extends javax.swing.JFrame {
 
         jLabel15.setText("Complemento");
 
+        txtComplemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComplementoActionPerformed(evt);
+            }
+        });
         txtComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtComplementoKeyPressed(evt);
@@ -602,6 +627,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSalario1ActionPerformed
 
+    private void txtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComplementoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -643,6 +672,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private javax.swing.JRadioButton bSim1;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -667,6 +697,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private javax.swing.JComboBox nDep1;
     private javax.swing.JComboBox nDep15;
     private javax.swing.JComboBox tEstado;
+    private javax.swing.JComboBox tSexo;
     private javax.swing.JTable tabTelefone2;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
