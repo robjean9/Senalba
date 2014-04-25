@@ -11,7 +11,6 @@ package Empresa;
  * @author Welington
  */
 public class Empresa {
-    private Integer Codigo;
     private String Nome;
     private String CNPJ;
     private String InscricaoEstadual;
@@ -20,16 +19,6 @@ public class Empresa {
     /**
      * @return the Codigo
      */
-    public Integer getCodigo() {
-        return Codigo;
-    }
-
-    /**
-     * @param Codigo the Codigo to set
-     */
-    public void setCodigo(Integer Codigo) {
-        this.Codigo = Codigo;
-    }
 
     /**
      * @return the Nome

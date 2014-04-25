@@ -6,7 +6,6 @@
 package usuario;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import usuario.usuario;
 public class BdUsuario extends bd.Bd{
     public BdUsuario(){
         try{

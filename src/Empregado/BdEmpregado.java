@@ -24,7 +24,7 @@ public class BdEmpregado extends bd.Bd {
         }
     }
     public void insere(Empregado empregado) {
-        String sql = "insert into empregado(Nome,RG,CPF,Endereco,CEP,Cidade,Bairro,Estado,Complemento,DEP1,DEP15,Salario1,VT,Data,Sexo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into empregado(Nome,RG,CPF,Endereco,CEP,Cidade,Bairro,Estado,Complemento,DEP1,DEP15,Salario1,VT,Data,Sexo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empregado.getNome());

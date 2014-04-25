@@ -158,7 +158,7 @@ public static String usertipo = null;
             //t.setVisible(true);
             //this.dispose();
         } else {
-            //JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
+            JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
         }       
     }//GEN-LAST:event_jButton1ActionPerformed
 
