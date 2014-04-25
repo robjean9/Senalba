@@ -62,7 +62,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         txtCPF.setText(empregado.getCPF());
         txtEndereco.setText(empregado.getEndereco());
         tEstado.setSelectedItem( empregado.getEstado());
-        txtCEP.setText(empregado.getCPF());
+        txtCEP.setText(empregado.getCEP());
         txtCidade.setText(empregado.getCidade());
         txtBairro.setText(empregado.getBairro());
         txtComplemento.setText(empregado.getComplemento());
@@ -368,11 +368,12 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(cVT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nDep15)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalario1))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSalario1)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nDep15)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
