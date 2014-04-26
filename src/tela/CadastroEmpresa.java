@@ -8,6 +8,7 @@ package tela;
 
 import Empresa.BdEmpresa;
 import Empresa.Empresa;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -84,8 +85,10 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtComplemento = new javax.swing.JTextField();
         bSalvar = new javax.swing.JButton();
+        bCancela = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SindSócio - Cadastro de Empresas");
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Empresas"));
 
@@ -257,20 +260,28 @@ public class CadastroEmpresa extends javax.swing.JFrame {
             }
         });
 
+        bCancela.setText("Cancelar");
+        bCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bCancela)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bSalvar)
-                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +291,9 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(bSalvar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bSalvar)
+                    .addComponent(bCancela))
                 .addContainerGap())
         );
 
@@ -295,6 +308,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         } else {
             getBd().atualiza(empresa);
         }
+        JOptionPane.showMessageDialog (null, "Cadastrado Com Sucesso");
         this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_bSalvarActionPerformed
@@ -314,6 +328,10 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     private void txtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComplementoKeyPressed
 
     }//GEN-LAST:event_txtComplementoKeyPressed
+
+    private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
+    this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_bCancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,6 +369,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCancela;
     private javax.swing.JButton bSalvar;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

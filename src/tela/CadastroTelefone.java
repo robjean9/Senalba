@@ -140,7 +140,8 @@ public class CadastroTelefone extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(312, 168));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFoneActionPerformed

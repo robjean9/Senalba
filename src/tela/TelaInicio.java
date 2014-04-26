@@ -33,6 +33,7 @@ public class TelaInicio extends javax.swing.JFrame {
         bEmpresa1 = new javax.swing.JButton();
         bMensalidade = new javax.swing.JButton();
         bPlanoSaude = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         bEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modulo_empresa.fw.png"))); // NOI18N
         bEmpresa.setToolTipText("Empresa");
@@ -43,6 +44,7 @@ public class TelaInicio extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SindSócio - Desenvolvido por Bare Kode Studios - 2014");
 
         bEmpregado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modulo_empregado.fw.png"))); // NOI18N
         bEmpregado.setToolTipText("Empregado");
@@ -76,13 +78,16 @@ public class TelaInicio extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
+        jLabel1.setText("Selecione o Módulo que deseja Acessar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bMensalidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -91,12 +96,18 @@ public class TelaInicio extends javax.swing.JFrame {
                         .addComponent(bEmpresa1)
                         .addGap(128, 128, 128)
                         .addComponent(bEmpregado)))
-                .addGap(134, 134, 134))
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bEmpresa1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bEmpregado, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,10 +115,10 @@ public class TelaInicio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bMensalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bPlanoSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(727, 643));
+        setSize(new java.awt.Dimension(678, 605));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -117,21 +128,22 @@ public class TelaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bEmpregadoActionPerformed
 
     private void bEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmpresaActionPerformed
-        CadastroEmpresa t = new CadastroEmpresa();
-        t.setVisible(true);    // TODO add your handling code here:
+            // TODO add your handling code here:
     }//GEN-LAST:event_bEmpresaActionPerformed
 
     private void bEmpresa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmpresa1ActionPerformed
-        // TODO add your handling code here:
+        CadastroEmpresa t = new CadastroEmpresa();
+        t.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_bEmpresa1ActionPerformed
 
     private void bMensalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMensalidadeActionPerformed
-        CadastroEmpresa t = new CadastroEmpresa();
+        TelaMensalidade t = new TelaMensalidade();
         t.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_bMensalidadeActionPerformed
 
     private void bPlanoSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPlanoSaudeActionPerformed
-        // TODO add your handling code here:
+        CadastroPlanoSaude t = new CadastroPlanoSaude();
+        t.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_bPlanoSaudeActionPerformed
 
     /**
@@ -175,5 +187,6 @@ public class TelaInicio extends javax.swing.JFrame {
     private javax.swing.JButton bEmpresa1;
     private javax.swing.JButton bMensalidade;
     private javax.swing.JButton bPlanoSaude;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

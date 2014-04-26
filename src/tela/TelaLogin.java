@@ -282,7 +282,7 @@ public static String usertipo = null;
     private javax.swing.JPasswordField tSenha;
     // End of variables declaration//GEN-END:variables
 
-    private void setString(String login) {
+   /*/ private void setString(String login) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -292,5 +292,5 @@ public static String usertipo = null;
 
     private String getTipo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }/*/
 }
