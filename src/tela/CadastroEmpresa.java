@@ -19,8 +19,8 @@ public class CadastroEmpresa extends javax.swing.JFrame {
      * Creates new form CadastroEmpresa
      */
     private Empresa empresa = new Empresa();
-    private boolean novo;
-    BdEmpresa bd;
+    private boolean novo=true;
+    private BdEmpresa bd;
     public CadastroEmpresa() {
         initComponents();
         bd = new BdEmpresa();
@@ -30,6 +30,12 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         empresa.setCNPJ(tCNPJ.getText());
         empresa.setInscricaoEstadual(tInscricaoEstadual.getText());
         empresa.setCNAE(tCNAE.getText());
+        empresa.setEndereco(tEndereco.getText());
+        empresa.setEstado((String) tEstado.getSelectedItem());
+        empresa.setCEP(txtCEP.getText());
+        empresa.setCidade(txtCidade.getText());
+        empresa.setBairro(txtBairro.getText());
+        empresa.setComplemento(txtComplemento.getText());
     }
     
     private void empresaToTela() {
@@ -37,6 +43,12 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         tCNPJ.setText(empresa.getCNPJ());
         tInscricaoEstadual.setText(empresa.getInscricaoEstadual());
         tCNAE.setText(empresa.getCNAE());
+        tEndereco.setText(empresa.getEndereco());
+        tEstado.setSelectedItem( empresa.getEstado());
+        txtCEP.setText(empresa.getCEP());
+        txtCidade.setText(empresa.getCidade());
+        txtBairro.setText(empresa.getBairro());
+        txtComplemento.setText(empresa.getComplemento());
     }
     
 
@@ -57,8 +69,21 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         tCNAE = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        tCNPJ = new javax.swing.JFormattedTextField();
+        jPanel4 = new javax.swing.JPanel();
+        tEndereco = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtBairro = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtCEP = new javax.swing.JFormattedTextField();
+        tEstado = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        txtCidade = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtComplemento = new javax.swing.JTextField();
         bSalvar = new javax.swing.JButton();
-        txtCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,22 +97,15 @@ public class CadastroEmpresa extends javax.swing.JFrame {
 
         jLabel3.setText("CNPJ");
 
-        bSalvar.setText("Salvar");
-        bSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSalvarActionPerformed(evt);
-            }
-        });
-
         try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            tCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCPF.setToolTipText("Digite o CPF sem dar espaços.");
-        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+        tCNPJ.setToolTipText("Digite o CPF sem dar espaços.");
+        tCNPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFActionPerformed(evt);
+                tCNPJActionPerformed(evt);
             }
         });
 
@@ -106,12 +124,8 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                     .addComponent(tInscricaoEstadual, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tNome, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tCNAE)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
-                .addGap(0, 50, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bSalvar)
-                .addContainerGap())
+                    .addComponent(tCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 261, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +136,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -131,45 +145,175 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tCNAE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(bSalvar))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
+
+        jLabel12.setText("Endereço");
+
+        jLabel6.setText("Bairro");
+
+        jLabel7.setText("CEP");
+
+        try {
+            txtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCEP.setToolTipText("Insira o CEP sem espaços.");
+
+        tEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins" }));
+        tEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tEstadoActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Estado");
+
+        jLabel13.setText("Cidade");
+
+        jLabel15.setText("Complemento");
+
+        txtComplemento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComplementoActionPerformed(evt);
+            }
+        });
+        txtComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtComplementoKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(157, 157, 157)
+                                .addComponent(jLabel11))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel15)
+                    .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(tEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(200, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
+                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+
+        bSalvar.setText("Salvar");
+        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bSalvar)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(bSalvar)
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(497, 331));
+        setSize(new java.awt.Dimension(708, 577));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
         telaToEmpresa();
-        if (novo) {
-            bd.insere(empresa);
+        if (isNovo()){
+            getBd().insere(empresa);
         } else {
-            bd.atualiza(empresa);
+            getBd().atualiza(empresa);
         }
         this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_bSalvarActionPerformed
 
-    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+    private void tCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tCNPJActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFActionPerformed
+    }//GEN-LAST:event_tCNPJActionPerformed
+
+    private void tEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tEstadoActionPerformed
+
+    private void txtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComplementoActionPerformed
+
+    private void txtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComplementoKeyPressed
+
+    }//GEN-LAST:event_txtComplementoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -208,20 +352,55 @@ public class CadastroEmpresa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bSalvar;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField tCNAE;
+    private javax.swing.JFormattedTextField tCNPJ;
+    private javax.swing.JTextField tEndereco;
+    private javax.swing.JComboBox tEstado;
     private javax.swing.JTextField tInscricaoEstadual;
     private javax.swing.JTextField tNome;
-    private javax.swing.JFormattedTextField txtCPF;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNome1;
-    private javax.swing.JTextField txtNome2;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JFormattedTextField txtCEP;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtComplemento;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the novo
+     */
+    public boolean isNovo() {
+        return novo;
+    }
+
+    /**
+     * @param novo the novo to set
+     */
+    public void setNovo(boolean novo) {
+        this.novo = novo;
+    }
+
+    /**
+     * @param bd the bd to set
+     */
+    public void setBd(BdEmpresa bd) {
+        this.bd = bd;
+    }
+
+    /**
+     * @return the bd
+     */
+    public BdEmpresa getBd() {
+        return bd;
+    }
 }

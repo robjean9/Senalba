@@ -62,7 +62,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         txtCPF.setText(empregado.getCPF());
         txtEndereco.setText(empregado.getEndereco());
         tEstado.setSelectedItem( empregado.getEstado());
-        txtCEP.setText(empregado.getCPF());
+        txtCEP.setText(empregado.getCEP());
         txtCidade.setText(empregado.getCidade());
         txtBairro.setText(empregado.getBairro());
         txtComplemento.setText(empregado.getComplemento());

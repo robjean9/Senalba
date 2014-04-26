@@ -25,13 +25,19 @@ public class BdEmpresa extends bd.Bd {
     }
     
      public void insere(Empresa empresa){
-        String sql = "insert into empresa (Nome,CNPJ,InscricaoEstadual,CNAE)values(?,?,?,?)";
+        String sql = "insert into empresa (Nome,CNPJ,InscricaoEstadual,CNAE,Endereco,CEP,Cidade,Bairro,Estado,Complemento)values(?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empresa.getNome());
             ps.setString(2, empresa.getCNPJ());
             ps.setString(3, empresa.getInscricaoEstadual());
             ps.setString(4, empresa.getCNAE());
+            ps.setString(5, empresa.getEndereco());
+            ps.setString(6, empresa.getCEP());
+            ps.setString(7, empresa.getCidade());
+            ps.setString(8, empresa.getBairro());
+            ps.setString(9, empresa.getEstado());
+            ps.setString(10, empresa.getComplemento());
             
             ps.execute();
         } catch (SQLException e) {
@@ -51,13 +57,19 @@ public class BdEmpresa extends bd.Bd {
     }
      
      public void atualiza(Empresa empresa){
-        String sql = "update empresa set Nome=?, InscricaoEstadual=?, CNAE=? where CNPJ=?";
+        String sql = "update empresa set Nome=?, InscricaoEstadual=?, CNAE=?, Endereco=?, CEP=?, Cidade=?, Bairro=?, Estado=?, Complemento=? where CNPJ=?";
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empresa.getNome());
             ps.setString(2, empresa.getInscricaoEstadual());
             ps.setString(3, empresa.getCNAE());
-            ps.setString(4, empresa.getCNPJ());
+            ps.setString(4, empresa.getEndereco());
+            ps.setString(5, empresa.getCEP());
+            ps.setString(6, empresa.getCidade());
+            ps.setString(7, empresa.getBairro());
+            ps.setString(8, empresa.getEstado());
+            ps.setString(9, empresa.getComplemento());
+            ps.setString(10, empresa.getCNPJ());
 
             ps.execute();
         }catch (SQLException e){
@@ -77,6 +89,12 @@ public class BdEmpresa extends bd.Bd {
                 registro.setNome(rs.getString("Nome"));
                 registro.setInscricaoEstadual(rs.getString("InscricaoEstadual"));
                 registro.setCNAE(rs.getString("CNAE"));
+                registro.setEndereco(rs.getString("Endereco"));
+                registro.setCEP(rs.getString("CEP"));
+                registro.setCidade(rs.getString("Cidade"));
+                registro.setBairro(rs.getString("Bairro"));
+                registro.setEstado(rs.getString("Estado"));
+                registro.setComplemento(rs.getString("Complemento"));
             }
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
