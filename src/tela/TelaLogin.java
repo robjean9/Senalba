@@ -57,7 +57,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tLogin = new javax.swing.JTextField();
         tSenha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        bEntra = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -83,10 +83,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Entrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bEntra.setText("Entrar");
+        bEntra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bEntraActionPerformed(evt);
             }
         });
 
@@ -108,7 +108,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(bEntra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -136,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(tSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(bEntra)
                             .addComponent(jButton2)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -149,18 +149,18 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 public static String userativo = null;
 public static String usertipo = null;
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bEntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntraActionPerformed
         usuario result = bd.localiza(tLogin.getText(), String.valueOf(tSenha.getPassword()));
         if(tLogin.getText().equals(result.getLogin()) & String.valueOf(tSenha.getPassword()).equals(result.getSenha())){
-           // userativo = (result.getLogin());
-            //usertipo = result.getTipo();
-            //telaHome t = new telaHome();
-            //t.setVisible(true);
-            //this.dispose();
+           userativo = (result.getLogin());
+           usertipo = result.getTipo();
+           TelaInicio t = new TelaInicio();
+           t.setVisible(true);
+           this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Login ou Senha incorreto!");
         }       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bEntraActionPerformed
 
     private void tLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tLoginKeyPressed
         int tecla = evt.getKeyCode();
@@ -273,7 +273,7 @@ public static String usertipo = null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bEntra;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -282,7 +282,7 @@ public static String usertipo = null;
     private javax.swing.JPasswordField tSenha;
     // End of variables declaration//GEN-END:variables
 
-    private void setString(String login) {
+   /*/ private void setString(String login) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -292,5 +292,5 @@ public static String usertipo = null;
 
     private String getTipo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }/*/
 }
