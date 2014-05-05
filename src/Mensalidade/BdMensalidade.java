@@ -40,11 +40,19 @@ public class BdMensalidade extends bd.Bd {
         }
     }
      
+<<<<<<< HEAD
      public void exclui(String Nome){
         String sql="delete from Mensalidades where Codigo=?";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, Nome);
+=======
+     public void exclui(String Codigo){
+        String sql="delete from Mensalidades where Codigo=?";
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ps.setString(1, Codigo);
+>>>>>>> c48f1613f9f3f55e2ba21efd57f6d46e071f85c3
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -65,11 +73,19 @@ public class BdMensalidade extends bd.Bd {
     }
      
      public Mensalidade localiza(String Nome) {
+<<<<<<< HEAD
         String sql = "select * from Mensalidades where Codigo=?";
         Mensalidade registro = new Mensalidade();
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(2, Nome);
+=======
+        String sql = "select * from Mensalidades where Nome=?";
+        Mensalidade registro = new Mensalidade();
+        try{
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ps.setString(1, Nome);
+>>>>>>> c48f1613f9f3f55e2ba21efd57f6d46e071f85c3
             ResultSet rs = ps.executeQuery(sql);
             if(rs.next()){
                 registro.setCodigo(rs.getInt("Codigo"));
