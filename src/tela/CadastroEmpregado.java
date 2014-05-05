@@ -30,7 +30,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         initComponents();
         bd = new BdEmpregado();
     }
-        private void telaToCliente() {
+        public void telaToCliente() {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             empregado.setData(Calendar.getInstance());
@@ -53,7 +53,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         empregado.setSalario1(Double.parseDouble(txtSalario1.getText()));
         empregado.setSexo(tSexo.getSelectedItem().toString().substring(0,1));
         }
-        private void clienteToTela() {
+        public void clienteToTela() {
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
         txtData.setText(s.format(empregado.getData()));
         txtNome.setText(empregado.getNome());

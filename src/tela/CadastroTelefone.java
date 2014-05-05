@@ -6,6 +6,7 @@
 
 package tela;
 
+import Empregado.Empregado;
 import Util.Telefone.BdTelefone;
 import Util.Telefone.Telefone;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ public class CadastroTelefone extends javax.swing.JFrame {
     private Telefone tel;
     private String cpf;
     private String nome;
+    private Empregado empregado;
     /**
      * Creates new form CadastroTelefone
      */
@@ -25,7 +27,9 @@ public class CadastroTelefone extends javax.swing.JFrame {
         initComponents();
         
     }
-    
+    public void telefoneToTela(){
+        lAssociado.setText(CadastroEmpregado.txtNome);
+    }
     private void telaToTelefone(){
         tel.setCpf_empregado(getCpf());
         tel.setTelefone(tFone.getText());

@@ -7,7 +7,11 @@
 package Empregado;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -74,6 +78,41 @@ public class BdEmpregado extends bd.Bd {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
         }
     }
+    public List relatorio(String CPF) {
+          String sql = "select * from empregado ORDER BY Nome";
+            List lista = new ArrayList();
+            try {
+               PreparedStatement st = getCon().prepareStatement(sql);
+               ResultSet rs = st.executeQuery();
+               while (rs.next()) {
+               Empregado registro = new Empregado();
+               registro.setNome(rs.getString("Nome"));
+               registro.setCPF(rs.getString("CPF"));
+               registro.setRG(rs.getString("RG"));
+               lista.add(registro);
+               }
+            } catch (SQLException e) {
+              JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
+           }
+            return lista;
+        }
+    public Empregado localiza(String CPF) {
+        String sql = "select * from empregado where CPF='" + CPF +"'";
+        Empregado registro = new Empregado();
+        try {
+            Statement st = getCon().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                registro.setNome(rs.getString("Nome"));
+                registro.setCPF(rs.getString("CPF"));
+                registro.setRG(rs.getString("RG"));
+            }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
+            }
+            return registro;
+
+        }
     
     
 }
