@@ -40,11 +40,11 @@ public class BdMensalidade extends bd.Bd {
         }
     }
      
-     public void exclui(Integer Codigo){
+     public void exclui(String Codigo){
         String sql="delete from Mensalidades where Codigo=?";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setInt(1, Codigo);
+            ps.setString(1, Codigo);
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -64,12 +64,12 @@ public class BdMensalidade extends bd.Bd {
         }
     }
      
-     public Mensalidade localiza(Integer Codigo) {
-        String sql = "select * from Mensalidades where Codigo=?";
+     public Mensalidade localiza(String Nome) {
+        String sql = "select * from Mensalidades where Nome=?";
         Mensalidade registro = new Mensalidade();
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setInt(1, Codigo);
+            ps.setString(1, Nome);
             ResultSet rs = ps.executeQuery(sql);
             if(rs.next()){
                 registro.setCodigo(rs.getInt("Codigo"));
