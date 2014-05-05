@@ -222,10 +222,10 @@ public class TelaMensalidade extends javax.swing.JFrame {
     private void mAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAlteraActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
         if (tLocalizaMensalidade.getSelectedRow() != -1) {
-            String Codigo =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 0).toString();
+            String Nome =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 1).toString();
             CadastroMensalidade t = new CadastroMensalidade();
             t.setNovo(false);
-            t.setMensalidade(bd.localiza(Codigo));
+            t.setMensalidade(bd.localiza(Nome));
             t.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Não há nenhuma mensalidade selecionada");
@@ -235,8 +235,8 @@ public class TelaMensalidade extends javax.swing.JFrame {
     private void mExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExcluiActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
         if (tLocalizaMensalidade.getSelectedRow() != -1) {
-            String Codigo =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 0).toString();
-            bd.exclui(Codigo);
+            String Nome =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 1).toString();
+            bd.exclui(Nome);
             preencheTabela();
         } else {
             JOptionPane.showMessageDialog(this, "Não há nenhuma mensalidade selecionada");
