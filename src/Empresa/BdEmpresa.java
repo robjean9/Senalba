@@ -9,6 +9,7 @@ package Empresa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -101,6 +102,33 @@ public class BdEmpresa extends bd.Bd {
         }
         return registro;
     }
+     
+      public ArrayList pesquisa(String nome) {
+        String sql = "select * from empresa where Nome like '%"+nome+"%'";
+        ArrayList lista = new ArrayList();
+        try{
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(sql);
+            while(rs.next()){
+                Empresa registro = new Empresa();
+                registro.setCNPJ(rs.getString("CNPJ"));
+                registro.setNome(rs.getString("Nome"));
+                registro.setInscricaoEstadual(rs.getString("InscricaoEstadual"));
+                registro.setCNAE(rs.getString("CNAE"));
+                registro.setEndereco(rs.getString("Endereco"));
+                registro.setCEP(rs.getString("CEP"));
+                registro.setCidade(rs.getString("Cidade"));
+                registro.setBairro(rs.getString("Bairro"));
+                registro.setEstado(rs.getString("Estado"));
+                registro.setComplemento(rs.getString("Complemento"));
+                lista.add(registro);
+            }
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
+        }
+        return lista;
+    }
+     
 }
 
 

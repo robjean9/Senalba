@@ -8,6 +8,7 @@ package tela;
 
 import Empregado.BdEmpregado;
 import Empregado.Empregado;
+import java.awt.Point;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -93,8 +94,27 @@ public class TabelaAssociados extends javax.swing.JFrame {
             new String [] {
                 "Nome", "RG", "CPF"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jAssociado.getTableHeader().setReorderingAllowed(false);
+        jAssociado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jAssociadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jAssociado);
+        if (jAssociado.getColumnModel().getColumnCount() > 0) {
+            jAssociado.getColumnModel().getColumn(0).setResizable(false);
+            jAssociado.getColumnModel().getColumn(1).setResizable(false);
+            jAssociado.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jMenu1.setText("Arquivo");
 
@@ -155,9 +175,8 @@ public class TabelaAssociados extends javax.swing.JFrame {
                     .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(bFiltro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -186,6 +205,21 @@ public class TabelaAssociados extends javax.swing.JFrame {
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jAssociadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAssociadoMouseClicked
+        if(evt.getClickCount() == 2){
+            Point p = evt.getPoint();
+            int row = jAssociado.rowAtPoint(p);
+            DefaultTableModel modelo = (DefaultTableModel) jAssociado.getModel();
+            String CPF =(String)  modelo.getValueAt(row, 2);
+            CadastroEmpregado t = new CadastroEmpregado();
+            t.setNovo(false);
+            t.setEmpregado(bd.localiza(CPF));
+            t.setVisible(true);       // TODO add your handling code her
+        }
+    }//GEN-LAST:event_jAssociadoMouseClicked
+
+    
+    
     /**
      * @param args the command line arguments
      */

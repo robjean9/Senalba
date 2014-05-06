@@ -7,8 +7,8 @@
 package tela;
 
 import Empregado.Empregado;
-import Util.Telefone.BdTelefone;
-import Util.Telefone.Telefone;
+import Util.TelefoneEmpregado.BdTelefone;
+import Util.TelefoneEmpregado.Telefone;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,9 +16,7 @@ import javax.swing.JOptionPane;
  * @author Breus
  */
 public class CadastroTelefone extends javax.swing.JFrame {
-    private Telefone tel;
-    private String cpf;
-    private String nome;
+    private Telefone tel = new Telefone();
     private Empregado empregado;
     /**
      * Creates new form CadastroTelefone
@@ -27,11 +25,8 @@ public class CadastroTelefone extends javax.swing.JFrame {
         initComponents();
         
     }
-    public void telefoneToTela(){
-        lAssociado.setText(CadastroEmpregado.txtNome);
-    }
     private void telaToTelefone(){
-        tel.setCpf_empregado(getCpf());
+        tel.setCpf_empregado(empregado.getCPF());
         tel.setTelefone(tFone.getText());
         tel.setTipo((String)cmbTipo.getSelectedItem());
     }
@@ -211,32 +206,22 @@ public class CadastroTelefone extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tFone;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * @return the empregado
+     */
+    public Empregado getEmpregado() {
+        return empregado;
+    }
+
+    /**
+     * @param empregado the empregado to set
+     */
+    public void setEmpregado(Empregado empregado) {
+        this.empregado = empregado;
+        lAssociado.setText(empregado.getNome());
+        
+    }
+
     
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     * @return the cpf
-     */
-    public String getCpf() {
-        return cpf;
-    }
-
-    /**
-     * @param cpf the cpf to set
-     */
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+   
 }

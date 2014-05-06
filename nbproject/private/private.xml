@@ -2,21 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/CadastroPlanoSaude.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/Mensalidade/BdMensalidade.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/CadastroEmpregado.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/CadastroEmpresa.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/TelaInicio.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/CadastroTelefone.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/Mensalidade/Mensalidade.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/TelaLogin.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/CadastroMensalidade.java</file>
-            <file>file:/C:/Users/Welington/Documents/GitHub/Senalba/src/tela/TelaMensalidade.java</file>
+            <file>file:/C:/Users/charles/Documents/GitHub/Senalba/src/tela/CadastroEmpregado.java</file>
+            <file>file:/C:/Users/charles/Documents/GitHub/Senalba/src/Empregado/BdEmpregado.java</file>
+            <file>file:/C:/Users/charles/Documents/GitHub/Senalba/src/tela/TabelaAssociados.java</file>
+            <file>file:/C:/Users/charles/Documents/GitHub/Senalba/src/tela/CadastroEmpresa.java</file>
         </group>
->>>>>>> e21810bbc8131fd3ae26e09c8af0f790b1cfec4d
     </open-files>
 </project-private>
