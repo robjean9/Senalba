@@ -28,6 +28,7 @@ public class TelaMensalidade extends javax.swing.JFrame {
         bd = new BdMensalidade();
         preencheTabela();
     }        
+
     private void preencheTabela() {
       DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
         int i = modelo.getRowCount();
@@ -54,6 +55,7 @@ public class TelaMensalidade extends javax.swing.JFrame {
 
         }
     }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,7 +80,19 @@ public class TelaMensalidade extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mRelatorio = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setText("Filtro:");
 
@@ -176,11 +190,11 @@ public class TelaMensalidade extends javax.swing.JFrame {
                 .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bFiltro)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -192,15 +206,16 @@ public class TelaMensalidade extends javax.swing.JFrame {
                         .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(bFiltro))
                     .addComponent(jLabel1))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(59, 59, 59)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(51, Short.MAX_VALUE)))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(598, 390));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFiltroActionPerformed
@@ -216,6 +231,7 @@ public class TelaMensalidade extends javax.swing.JFrame {
         t.setNovo(true);
         t.setVisible(true);
         preencheTabela();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_mNovoActionPerformed
 
@@ -246,6 +262,14 @@ public class TelaMensalidade extends javax.swing.JFrame {
     private void mRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRelatorioActionPerformed
         preencheTabelapesquisa();            // TODO add your handling code here:
     }//GEN-LAST:event_mRelatorioActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+            // TODO add your handling code here:
+    }//GEN-LAST:event_formFocusGained
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+     preencheTabelapesquisa();   // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

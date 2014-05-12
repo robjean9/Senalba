@@ -157,6 +157,13 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                 formFocusGained(evt);
             }
         });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificação"));
 
@@ -591,6 +598,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
 
     private void bCadastroTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastroTelefoneActionPerformed
         CadastroTelefone t = new CadastroTelefone();
+        telaToCliente();
         t.setEmpregado(empregado);
         t.setVisible(true);
     }//GEN-LAST:event_bCadastroTelefoneActionPerformed
@@ -651,6 +659,10 @@ public class CadastroEmpregado extends javax.swing.JFrame {
             preeencheTabela();
        }
     }//GEN-LAST:event_tTelefoneKeyPressed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preeencheTabela();        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

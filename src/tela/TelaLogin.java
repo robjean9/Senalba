@@ -154,7 +154,7 @@ public static String usertipo = null;
         if(tLogin.getText().equals(result.getLogin()) & String.valueOf(tSenha.getPassword()).equals(result.getSenha())){
            userativo = (result.getLogin());
            usertipo = result.getTipo();
-           TelaInicio t = new TelaInicio();
+           TelaPrincipal t = new TelaPrincipal();
            t.setVisible(true);
            this.dispose();
         } else {
