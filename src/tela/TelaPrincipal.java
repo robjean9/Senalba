@@ -7,19 +7,21 @@
 package tela;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author charles
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+private usuario.usuario usr;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         initComponents();
+        
     }
 
     /**
@@ -165,4 +167,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the usr
+     */
+    public usuario.usuario getUsr() {
+        return usr;
+    }
+
+    /**
+     * @param usr the usr to set
+     */
+    public void setUsr(usuario.usuario usr) {
+        this.usr = usr;
+        if (usr.getTipo().equals("admin")){
+          JOptionPane.showMessageDialog(this, "Você é admin");
+        }
+    }
 }

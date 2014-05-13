@@ -155,6 +155,7 @@ public static String usertipo = null;
            userativo = (result.getLogin());
            usertipo = result.getTipo();
            TelaPrincipal t = new TelaPrincipal();
+           t.setUsr(result);
            t.setVisible(true);
            this.dispose();
         } else {
@@ -208,13 +209,13 @@ public static String usertipo = null;
         boolean erro = false;
         try{
             SimpleEmail email = new SimpleEmail();
-            email.setHostName("smtp.gmail.com");
+            email.setHostName("smtp.barekode.com.br");
             email.addTo(mail);
-            email.setFrom("psquatropatas@gmail.com", "Sistema PetShop");
+            email.setFrom("equipe@barekode.com", "Sistema de recuperação de senha");
             email.setSubject("Recuperação de Senha do Sistema");
             email.setMsg(" Seu Login é: " + login + "\n Sua Senha é: " + senha);
             email.setSmtpPort(465);
-            email.setAuthenticator(new DefaultAuthenticator("psquatropatas@gmail.com", "4pataspet"));
+            email.setAuthenticator(new DefaultAuthenticator("estagiario@barekode.com", "estagiariokode"));
             email.getMailSession().getProperties().put("mail.smtp.auth", "true");
             email.getMailSession().getProperties().put("mail.debug", "true");
             email.getMailSession().getProperties().put("mail.smtp.port", "465");
