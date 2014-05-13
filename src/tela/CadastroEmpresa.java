@@ -87,7 +87,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         bSalvar = new javax.swing.JButton();
         bCancela = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SindSócio - Cadastro de Empresas");
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Empresas"));

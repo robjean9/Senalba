@@ -6,12 +6,14 @@
 
 package tela;
 
-import java.util.Iterator;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 import Mensalidade.BdMensalidade;
 import Mensalidade.Mensalidade;
+import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -71,14 +73,9 @@ public class TelaMensalidade extends javax.swing.JFrame {
         bFiltro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tLocalizaMensalidade = new javax.swing.JTable();
+        tCadastro = new javax.swing.JButton();
+        bImprimir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        mNovo = new javax.swing.JMenuItem();
-        mAltera = new javax.swing.JMenuItem();
-        mExclui = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -134,68 +131,50 @@ public class TelaMensalidade extends javax.swing.JFrame {
                 tLocalizaMensalidadeFocusGained(evt);
             }
         });
+        tLocalizaMensalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tLocalizaMensalidadeMouseClicked(evt);
+            }
+        });
+        tLocalizaMensalidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tLocalizaMensalidadeKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tLocalizaMensalidade);
 
-        jMenu1.setText("Cadastrar");
-
-        jMenu2.setText("Mensalidade");
-
-        mNovo.setText("Novo");
-        mNovo.addActionListener(new java.awt.event.ActionListener() {
+        tCadastro.setText("Cadastro");
+        tCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mNovoActionPerformed(evt);
+                tCadastroActionPerformed(evt);
             }
         });
-        jMenu2.add(mNovo);
 
-        mAltera.setText("Alterar");
-        mAltera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mAlteraActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mAltera);
-
-        mExclui.setText("Excluir");
-        mExclui.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mExcluiActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mExclui);
-
-        jMenu1.add(jMenu2);
-        jMenu1.add(jSeparator1);
-
-        mRelatorio.setText("Relatório");
-        mRelatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mRelatorioActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mRelatorio);
-
-        jMenuBar1.add(jMenu1);
-
+        bImprimir.setText("Imprimir");
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tCadastro)
+                .addGap(32, 32, 32)
+                .addComponent(bImprimir)
+                .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bFiltro)
-                .addContainerGap(341, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bFiltro)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,12 +185,13 @@ public class TelaMensalidade extends javax.swing.JFrame {
                         .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(bFiltro))
                     .addComponent(jLabel1))
-                .addContainerGap(286, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(59, 59, 59)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(51, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tCadastro)
+                    .addComponent(bImprimir))
+                .addGap(23, 23, 23))
         );
 
         setSize(new java.awt.Dimension(598, 390));
@@ -226,43 +206,6 @@ public class TelaMensalidade extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tLocalizaMensalidadeFocusGained
 
-    private void mNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNovoActionPerformed
-        CadastroMensalidade t = new CadastroMensalidade();
-        t.setNovo(true);
-        t.setVisible(true);
-        preencheTabela();
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mNovoActionPerformed
-
-    private void mAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAlteraActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
-        if (tLocalizaMensalidade.getSelectedRow() != -1) {
-            String Codigo =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 0).toString();
-            CadastroMensalidade t = new CadastroMensalidade();
-            t.setNovo(false);
-            t.setMensalidade(bd.localiza(Codigo));
-            t.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Não há nenhuma mensalidade selecionada");
-        }    // TODO add your handling code here:
-    }//GEN-LAST:event_mAlteraActionPerformed
-
-    private void mExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExcluiActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
-        if (tLocalizaMensalidade.getSelectedRow() != -1) {
-            String Codigo =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 0).toString();
-            bd.exclui(Codigo);
-            preencheTabela();
-        } else {
-            JOptionPane.showMessageDialog(this, "Não há nenhuma mensalidade selecionada");
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_mExcluiActionPerformed
-
-    private void mRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRelatorioActionPerformed
-        preencheTabelapesquisa();            // TODO add your handling code here:
-    }//GEN-LAST:event_mRelatorioActionPerformed
-
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
             // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
@@ -270,6 +213,37 @@ public class TelaMensalidade extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
      preencheTabelapesquisa();   // TODO add your handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void tLocalizaMensalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tLocalizaMensalidadeMouseClicked
+    if(evt.getClickCount() == 2){
+            Point p = evt.getPoint();
+            int row = tLocalizaMensalidade.rowAtPoint(p);
+            DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
+            int Codigo =  (int) modelo.getValueAt(row, 0);
+            CadastroMensalidade t = new CadastroMensalidade();
+            t.setNovo(false);
+            t.setMensalidade(bd.localiza(Codigo));
+            t.setVisible(true);       // TODO add your handling code her
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_tLocalizaMensalidadeMouseClicked
+
+    private void tLocalizaMensalidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tLocalizaMensalidadeKeyPressed
+     if(evt.getKeyCode() == KeyEvent.VK_DELETE){
+         DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
+         int Codigo = (int) modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 0);
+         bd.exclui(Codigo);
+         preencheTabela();
+     }
+// TODO add your handling code here:
+    }//GEN-LAST:event_tLocalizaMensalidadeKeyPressed
+
+    private void tCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tCadastroActionPerformed
+    CadastroMensalidade t = new CadastroMensalidade();
+        t.setNovo(true);
+        t.setVisible(true);
+        preencheTabela();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,16 +282,11 @@ public class TelaMensalidade extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bFiltro;
+    private javax.swing.JButton bImprimir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenuItem mAltera;
-    private javax.swing.JMenuItem mExclui;
-    private javax.swing.JMenuItem mNovo;
-    private javax.swing.JMenuItem mRelatorio;
+    private javax.swing.JButton tCadastro;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tLocalizaMensalidade;
     // End of variables declaration//GEN-END:variables

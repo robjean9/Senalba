@@ -150,7 +150,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tTelefone = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Empregado - SindSócio");
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

@@ -43,7 +43,7 @@ public class TelaInicio extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SindSócio - Desenvolvido por Bare Kode Studios - 2014");
 
         bEmpregado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modulo_empregado.fw.png"))); // NOI18N

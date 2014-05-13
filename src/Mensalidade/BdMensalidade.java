@@ -28,23 +28,22 @@ public class BdMensalidade extends bd.Bd {
     }
     
      public void insere(Mensalidade mensalidade){
-        String sql = "insert into Mensalidades (Codigo,Nome,Preco)values(?,?,?)";
+        String sql = "insert into Mensalidades (Nome,Preco)values(?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setString(2, mensalidade.getNome());
-            ps.setDouble(3, mensalidade.getPreco());
-            ps.setInt(1, mensalidade.getCodigo());
+            ps.setString(1, mensalidade.getNome());
+            ps.setDouble(2, mensalidade.getPreco());
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
         }
     }
      
-     public void exclui(String Codigo){
+     public void exclui(int Codigo){
         String sql="delete from Mensalidades where Codigo=?";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setString(1, Codigo);
+            ps.setInt(1, Codigo);
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -52,7 +51,7 @@ public class BdMensalidade extends bd.Bd {
     }
      
      public void atualiza(Mensalidade mensalidade){
-        String sql = "update Mensalidades set Nome=?, Preco=?, where Codigo=?";
+        String sql = "update Mensalidades set Nome=?, Preco=? where Codigo=?";
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setInt(3, mensalidade.getCodigo());
@@ -64,12 +63,11 @@ public class BdMensalidade extends bd.Bd {
         }
     }
      
-     public Mensalidade localiza(String Nome) {
-        String sql = "select * from Mensalidades where Nome=?";
+     public Mensalidade localiza(int Codigo) {
+        String sql = "select * from Mensalidades where Codigo='"+Codigo+"'";
         Mensalidade registro = new Mensalidade();
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setString(1, Nome);
             ResultSet rs = ps.executeQuery(sql);
             if(rs.next()){
                 registro.setCodigo(rs.getInt("Codigo"));

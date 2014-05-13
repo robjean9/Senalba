@@ -116,7 +116,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/tela/logo_barekode.png"/>
+              <Image iconType="3" name="/img/logo_barekode.png"/>
             </Property>
           </Properties>
         </Component>
