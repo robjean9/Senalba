@@ -28,6 +28,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     }
     private void telaToEmpresa() {
         empresa.setNome(tNome.getText());
+        empresa.setNomeFantasia(tNomeFantasia.getText());
         empresa.setCNPJ(tCNPJ.getText());
         empresa.setInscricaoEstadual(tInscricaoEstadual.getText());
         empresa.setCNAE(tCNAE.getText());
@@ -41,6 +42,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     
     private void empresaToTela() {
         tNome.setText(empresa.getNome());
+        tNomeFantasia.setText(empresa.getNome());
         tCNPJ.setText(empresa.getCNPJ());
         tInscricaoEstadual.setText(empresa.getInscricaoEstadual());
         tCNAE.setText(empresa.getCNAE());
@@ -71,6 +73,8 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         tCNAE = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tCNPJ = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        tNomeFantasia = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         tEndereco = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -92,7 +96,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Empresas"));
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Razao social");
 
         jLabel5.setText("CNAE");
 
@@ -112,23 +116,34 @@ public class CadastroEmpresa extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Nome Fantasia");
+
+        tNomeFantasia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tNomeFantasiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(tInscricaoEstadual, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tNome, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tCNAE)
-                    .addComponent(tCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 261, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tInscricaoEstadual)
+                        .addComponent(tCNAE, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(tCNPJ, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +163,11 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tCNAE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
@@ -220,7 +239,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +269,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         bSalvar.setText("Salvar");
@@ -333,6 +352,10 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_bCancelaActionPerformed
 
+    private void tNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNomeFantasiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tNomeFantasiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,6 +394,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancela;
     private javax.swing.JButton bSalvar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -389,6 +413,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     private javax.swing.JComboBox tEstado;
     private javax.swing.JTextField tInscricaoEstadual;
     private javax.swing.JTextField tNome;
+    private javax.swing.JTextField tNomeFantasia;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JTextField txtCidade;

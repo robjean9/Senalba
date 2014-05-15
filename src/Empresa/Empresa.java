@@ -12,6 +12,7 @@ package Empresa;
  */
 public class Empresa {
     private String Nome;
+    private String NomeFantasia;
     private String CNPJ;
     private String InscricaoEstadual;
     private String CNAE;
@@ -164,6 +165,20 @@ public class Empresa {
      */
     public void setComplemento(String Complemento) {
         this.Complemento = Complemento;
+    }
+
+    /**
+     * @return the NomeFantasia
+     */
+    public String getNomeFantasia() {
+        return NomeFantasia;
+    }
+
+    /**
+     * @param NomeFantasia the NomeFantasia to set
+     */
+    public void setNomeFantasia(String NomeFantasia) {
+        this.NomeFantasia = NomeFantasia;
     }
 
     /**

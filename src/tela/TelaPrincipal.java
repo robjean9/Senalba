@@ -120,7 +120,7 @@ private usuario.usuario usr;
     }//GEN-LAST:event_bParametrosActionPerformed
 
     private void bContabilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bContabilActionPerformed
-           TelaInicio t = new TelaInicio();
+           TelaNormal t = new TelaNormal();
            t.setVisible(true);
            // TODO add your handling code here:
     }//GEN-LAST:event_bContabilActionPerformed
