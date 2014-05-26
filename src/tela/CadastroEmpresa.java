@@ -27,31 +27,31 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         bd = new BdEmpresa();
     }
     private void telaToEmpresa() {
-        empresa.setNome(tNome.getText());
-        empresa.setNomeFantasia(tNomeFantasia.getText());
-        empresa.setCNPJ(tCNPJ.getText());
-        empresa.setInscricaoEstadual(tInscricaoEstadual.getText());
-        empresa.setCNAE(tCNAE.getText());
-        empresa.setEndereco(tEndereco.getText());
-        empresa.setEstado((String) tEstado.getSelectedItem());
-        empresa.setCEP(txtCEP.getText());
-        empresa.setCidade(txtCidade.getText());
-        empresa.setBairro(txtBairro.getText());
-        empresa.setComplemento(txtComplemento.getText());
+        getEmpresa().setNome(tNome.getText());
+        getEmpresa().setNomeFantasia(tNomeFantasia.getText());
+        getEmpresa().setCNPJ(tCNPJ.getText());
+        getEmpresa().setInscricaoEstadual(tInscricaoEstadual.getText());
+        getEmpresa().setCNAE(tCNAE.getText());
+        getEmpresa().setEndereco(tEndereco.getText());
+        getEmpresa().setEstado((String) tEstado.getSelectedItem());
+        getEmpresa().setCEP(txtCEP.getText());
+        getEmpresa().setCidade(txtCidade.getText());
+        getEmpresa().setBairro(txtBairro.getText());
+        getEmpresa().setComplemento(txtComplemento.getText());
     }
     
     private void empresaToTela() {
-        tNome.setText(empresa.getNome());
-        tNomeFantasia.setText(empresa.getNome());
-        tCNPJ.setText(empresa.getCNPJ());
-        tInscricaoEstadual.setText(empresa.getInscricaoEstadual());
-        tCNAE.setText(empresa.getCNAE());
-        tEndereco.setText(empresa.getEndereco());
-        tEstado.setSelectedItem( empresa.getEstado());
-        txtCEP.setText(empresa.getCEP());
-        txtCidade.setText(empresa.getCidade());
-        txtBairro.setText(empresa.getBairro());
-        txtComplemento.setText(empresa.getComplemento());
+        tNome.setText(getEmpresa().getNome());
+        tNomeFantasia.setText(getEmpresa().getNomeFantasia());
+        tCNPJ.setText(getEmpresa().getCNPJ());
+        tInscricaoEstadual.setText(getEmpresa().getInscricaoEstadual());
+        tCNAE.setText(getEmpresa().getCNAE());
+        tEndereco.setText(getEmpresa().getEndereco());
+        tEstado.setSelectedItem( getEmpresa().getEstado());
+        txtCEP.setText(getEmpresa().getCEP());
+        txtCidade.setText(getEmpresa().getCidade());
+        txtBairro.setText(getEmpresa().getBairro());
+        txtComplemento.setText(getEmpresa().getComplemento());
     }
     
 
@@ -323,9 +323,9 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
         telaToEmpresa();
         if (isNovo()){
-            getBd().insere(empresa);
+            getBd().insere(getEmpresa());
         } else {
-            getBd().atualiza(empresa);
+            getBd().atualiza(getEmpresa());
         }
         JOptionPane.showMessageDialog (null, "Cadastrado Com Sucesso");
         this.dispose();
@@ -446,5 +446,20 @@ public class CadastroEmpresa extends javax.swing.JFrame {
      */
     public BdEmpresa getBd() {
         return bd;
+    }
+
+    /**
+     * @return the empresa
+     */
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    /**
+     * @param empresa the empresa to set
+     */
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+        empresaToTela();
     }
 }

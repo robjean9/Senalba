@@ -44,7 +44,7 @@ public class TelaInicio extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("SindSócio - Desenvolvido por Bare Kode Studios - 2014");
+        setTitle("SindSócio - Módulo Administrador");
 
         bEmpregado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/modulo_empregado.fw.png"))); // NOI18N
         bEmpregado.setToolTipText("Empregado");
@@ -132,7 +132,7 @@ public class TelaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bEmpresaActionPerformed
 
     private void bEmpresa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmpresa1ActionPerformed
-        CadastroEmpresa t = new CadastroEmpresa();
+        TabelaEmpresa t = new TabelaEmpresa();
         t.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_bEmpresa1ActionPerformed
 

@@ -6,6 +6,9 @@
 
 package tela;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,6 +22,9 @@ private usuario.usuario usr;
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
+         URL url = this.getClass().getResource("/img/icon.png");  
+       Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+       this.setIconImage(imagemTitulo); 
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
         initComponents();
         
@@ -38,8 +44,12 @@ private usuario.usuario usr;
         bContabil = new javax.swing.JButton();
         bParametros = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        lUser = new javax.swing.JLabel();
+        lUser1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("SindSócio - Módulos");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 255));
@@ -61,21 +71,41 @@ private usuario.usuario usr;
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo_barekode.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
+
+        lUser.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lUser.setForeground(new java.awt.Color(255, 255, 255));
+        lUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        lUser1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lUser1.setForeground(new java.awt.Color(255, 255, 255));
+        lUser1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Desenvolvido por Bare Kode Studios 2014₢");
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(bParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(319, 319, 319)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
-                .addComponent(bContabil, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(bParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(293, 293, 293)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                        .addComponent(bContabil, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lUser, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -92,12 +122,20 @@ private usuario.usuario usr;
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lUser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(bContabil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(bParametros, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lUser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +204,9 @@ private usuario.usuario usr;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lUser;
+    private javax.swing.JLabel lUser1;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -182,6 +223,13 @@ private usuario.usuario usr;
         this.usr = usr;
         if (usr.getTipo().equals("admin")){
           JOptionPane.showMessageDialog(this, "Você é admin");
+          lUser1.setText("Usuario Administrador");
         }
+        if(usr.getTipo().equals("user")){
+            bParametros.setEnabled(false);
+            lUser1.setText("Usuario Comum");
+        }
+        lUser.setText("Logado como: " + usr.getLogin());
+        
     }
 }

@@ -80,16 +80,16 @@ public class BdEmpresa extends bd.Bd {
         }
     }
      
-     public Empresa localiza(int CNPJ) {
-        String sql = "select * from empresa where CNPJ=?";
+     public Empresa localiza(String CNPJ) {
+        String sql = "select * from empresa where CNPJ='"+CNPJ+"'";
         Empresa registro = new Empresa();
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setInt(1, CNPJ);
             ResultSet rs = ps.executeQuery(sql);
             if(rs.next()){
                 registro.setCNPJ(rs.getString("CNPJ"));
                 registro.setNome(rs.getString("Nome"));
+                registro.setNomeFantasia(rs.getString("NomeFantasia"));
                 registro.setInscricaoEstadual(rs.getString("InscricaoEstadual"));
                 registro.setCNAE(rs.getString("CNAE"));
                 registro.setEndereco(rs.getString("Endereco"));
@@ -115,6 +115,7 @@ public class BdEmpresa extends bd.Bd {
                 Empresa registro = new Empresa();
                 registro.setCNPJ(rs.getString("CNPJ"));
                 registro.setNome(rs.getString("Nome"));
+                registro.setNomeFantasia(rs.getString("NomeFantasia"));
                 registro.setInscricaoEstadual(rs.getString("InscricaoEstadual"));
                 registro.setCNAE(rs.getString("CNAE"));
                 registro.setEndereco(rs.getString("Endereco"));

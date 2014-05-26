@@ -6,6 +6,10 @@
 
 package tela;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+
 /**
  *
  * @author Breus
@@ -16,6 +20,9 @@ public class TelaNormal extends javax.swing.JFrame {
      * Creates new form TelaNormal
      */
     public TelaNormal() {
+         URL url = this.getClass().getResource("/img/icon.png");  
+       Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+       this.setIconImage(imagemTitulo); 
         initComponents();
     }
 
@@ -28,7 +35,7 @@ public class TelaNormal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

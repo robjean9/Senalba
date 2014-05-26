@@ -7,6 +7,7 @@
 package tela;
 
 import Empresa.*;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author charles
  */
+
 public class TabelaEmpresa extends javax.swing.JFrame {
+    BdEmpresa bd;
     
     /**
      * Creates new form TabelaEmpresa
@@ -23,6 +26,7 @@ public class TabelaEmpresa extends javax.swing.JFrame {
     public TabelaEmpresa() {
         initComponents();
         preencheTabela();
+        bd = new BdEmpresa();
     }
     
     private void preencheTabela(){
@@ -55,6 +59,7 @@ public class TabelaEmpresa extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tEmpresas = new javax.swing.JTable();
+        bCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -87,6 +92,11 @@ public class TabelaEmpresa extends javax.swing.JFrame {
             }
         });
         tEmpresas.getTableHeader().setReorderingAllowed(false);
+        tEmpresas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tEmpresasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tEmpresas);
         if (tEmpresas.getColumnModel().getColumnCount() > 0) {
             tEmpresas.getColumnModel().getColumn(0).setResizable(false);
@@ -94,6 +104,13 @@ public class TabelaEmpresa extends javax.swing.JFrame {
             tEmpresas.getColumnModel().getColumn(2).setResizable(false);
             tEmpresas.getColumnModel().getColumn(3).setResizable(false);
         }
+
+        bCadastrar.setText("Cadastrar empresa");
+        bCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,7 +123,9 @@ public class TabelaEmpresa extends javax.swing.JFrame {
                 .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bCadastrar)
+                .addGap(39, 39, 39))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,7 +135,8 @@ public class TabelaEmpresa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(bCadastrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -139,6 +159,26 @@ public class TabelaEmpresa extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         preencheTabela();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void bCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarActionPerformed
+        // TODO add your handling code here:
+        CadastroEmpresa t = new CadastroEmpresa();
+        t.setVisible(true);
+    }//GEN-LAST:event_bCadastrarActionPerformed
+
+    private void tEmpresasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEmpresasMouseClicked
+        // TODO add your handling code here:
+         if(evt.getClickCount() == 2){
+            Point p = evt.getPoint();
+            int row = tEmpresas.rowAtPoint(p);
+            DefaultTableModel modelo = (DefaultTableModel) tEmpresas.getModel();
+            String CNPJ =(String)  modelo.getValueAt(row, 0);
+            CadastroEmpresa t = new CadastroEmpresa();
+            t.setNovo(false);
+            t.setEmpresa(bd.localiza(CNPJ));
+            t.setVisible(true);
+         }
+    }//GEN-LAST:event_tEmpresasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -176,6 +216,7 @@ public class TabelaEmpresa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCadastrar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
