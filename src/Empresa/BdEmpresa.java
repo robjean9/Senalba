@@ -26,7 +26,7 @@ public class BdEmpresa extends bd.Bd {
     }
     
      public void insere(Empresa empresa){
-        String sql = "insert into empresa (Nome,NomeFantasia,CNPJ,InscricaoEstadual,CNAE,Endereco,CEP,Cidade,Bairro,Estado,Complemento)values(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into empresa (Nome,NomeFantasia,CNPJ,InscricaoEstadual,CNAE,Endereco,CEP,Cidade,Bairro,Estado,Complemento,Telefone1,Telefone2,Telefone3,Email,ContatoAdm,Observacoes)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empresa.getNome());
@@ -40,6 +40,12 @@ public class BdEmpresa extends bd.Bd {
             ps.setString(9, empresa.getBairro());
             ps.setString(10, empresa.getEstado());
             ps.setString(11, empresa.getComplemento());
+            ps.setString(12, empresa.getTelefone1());
+            ps.setString(13, empresa.getTelefone2());
+            ps.setString(14, empresa.getTelefone3());
+            ps.setString(15, empresa.getEmail());
+            ps.setString(16, empresa.getContatoAdm());
+            ps.setString(17, empresa.getObservacoes());
             
             ps.execute();
         } catch (SQLException e) {
@@ -59,7 +65,7 @@ public class BdEmpresa extends bd.Bd {
     }
      
      public void atualiza(Empresa empresa){
-        String sql = "update empresa set Nome=?, NomeFantasia=?, InscricaoEstadual=?, CNAE=?, Endereco=?, CEP=?, Cidade=?, Bairro=?, Estado=?, Complemento=? where CNPJ=?";
+        String sql = "update empresa set Nome=?, NomeFantasia=?, InscricaoEstadual=?, CNAE=?, Endereco=?, CEP=?, Cidade=?, Bairro=?, Estado=?, Complemento=?, Telefone1=?, Telefone2=?, Telefone3=?, Email=?, ContatoAdm=?, Observacoes=? where CNPJ=?";
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empresa.getNome());
@@ -72,7 +78,13 @@ public class BdEmpresa extends bd.Bd {
             ps.setString(8, empresa.getBairro());
             ps.setString(9, empresa.getEstado());
             ps.setString(10, empresa.getComplemento());
-            ps.setString(11, empresa.getCNPJ());
+            ps.setString(11, empresa.getTelefone1());
+            ps.setString(12, empresa.getTelefone2());
+            ps.setString(13, empresa.getTelefone3());
+            ps.setString(14, empresa.getEmail());
+            ps.setString(15, empresa.getContatoAdm());
+            ps.setString(16, empresa.getObservacoes());
+            ps.setString(17, empresa.getCNPJ());
 
             ps.execute();
         }catch (SQLException e){
@@ -98,6 +110,12 @@ public class BdEmpresa extends bd.Bd {
                 registro.setBairro(rs.getString("Bairro"));
                 registro.setEstado(rs.getString("Estado"));
                 registro.setComplemento(rs.getString("Complemento"));
+                registro.setTelefone1(rs.getString("Telefone1"));
+                registro.setTelefone2(rs.getString("Telefone2"));
+                registro.setTelefone3(rs.getString("Telefone3"));
+                registro.setEmail(rs.getString("Email"));
+                registro.setContatoAdm(rs.getString("ContatoAdm"));
+                registro.setObservacoes(rs.getString("Observacoes"));
             }
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -124,6 +142,12 @@ public class BdEmpresa extends bd.Bd {
                 registro.setBairro(rs.getString("Bairro"));
                 registro.setEstado(rs.getString("Estado"));
                 registro.setComplemento(rs.getString("Complemento"));
+                registro.setTelefone1(rs.getString("Telefone1"));
+                registro.setTelefone2(rs.getString("Telefone2"));
+                registro.setTelefone3(rs.getString("Telefone3"));
+                registro.setEmail(rs.getString("Email"));
+                registro.setContatoAdm(rs.getString("ContatoAdm"));
+                registro.setObservacoes(rs.getString("Observacoes"));
                 lista.add(registro);
             }
         }catch (SQLException e){
