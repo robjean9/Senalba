@@ -28,18 +28,18 @@ public class BdMensalidade extends bd.Bd {
     }
     
      public void insere(Mensalidade mensalidade){
-        String sql = "insert into Mensalidades (Codigo,Nome,Preco)values(?,?,?)";
+        String sql = "insert into Mensalidades (Nome,Preco)values(?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
-            ps.setString(2, mensalidade.getNome());
-            ps.setDouble(3, mensalidade.getPreco());
-            ps.setInt(1, mensalidade.getCodigo());
+            ps.setString(1, mensalidade.getNome());
+            ps.setDouble(2, mensalidade.getPreco());
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
         }
     }
      
+<<<<<<< HEAD
 <<<<<<< HEAD
      public void exclui(String Nome){
         String sql="delete from Mensalidades where Codigo=?";
@@ -53,6 +53,13 @@ public class BdMensalidade extends bd.Bd {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, Codigo);
 >>>>>>> c48f1613f9f3f55e2ba21efd57f6d46e071f85c3
+=======
+     public void exclui(int Codigo){
+        String sql="delete from Mensalidades where Codigo=?";
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ps.setInt(1, Codigo);
+>>>>>>> 8889883ff06a1e28200b6f40aef48d3754e372f5
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -60,7 +67,7 @@ public class BdMensalidade extends bd.Bd {
     }
      
      public void atualiza(Mensalidade mensalidade){
-        String sql = "update Mensalidades set Nome=?, Preco=?, where Codigo=?";
+        String sql = "update Mensalidades set Nome=?, Preco=? where Codigo=?";
         try{
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setInt(3, mensalidade.getCodigo());
@@ -72,6 +79,7 @@ public class BdMensalidade extends bd.Bd {
         }
     }
      
+<<<<<<< HEAD
      public Mensalidade localiza(String Nome) {
 <<<<<<< HEAD
         String sql = "select * from Mensalidades where Codigo=?";
@@ -86,6 +94,13 @@ public class BdMensalidade extends bd.Bd {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, Nome);
 >>>>>>> c48f1613f9f3f55e2ba21efd57f6d46e071f85c3
+=======
+     public Mensalidade localiza(int Codigo) {
+        String sql = "select * from Mensalidades where Codigo='"+Codigo+"'";
+        Mensalidade registro = new Mensalidade();
+        try{
+            PreparedStatement ps = getCon().prepareStatement(sql);
+>>>>>>> 8889883ff06a1e28200b6f40aef48d3754e372f5
             ResultSet rs = ps.executeQuery(sql);
             if(rs.next()){
                 registro.setCodigo(rs.getInt("Codigo"));

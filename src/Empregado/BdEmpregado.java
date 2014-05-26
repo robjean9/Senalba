@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -97,15 +98,31 @@ public class BdEmpregado extends bd.Bd {
             return lista;
         }
     public Empregado localiza(String CPF) {
-        String sql = "select * from empregado where CPF='" + CPF +"'";
+        String sql = "select * from empregado where CPF=?";
         Empregado registro = new Empregado();
         try {
-            Statement st = getCon().createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement  ps = getCon().prepareStatement(sql);
+            ps.setString(1, CPF);
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                System.out.println("ok");
                 registro.setNome(rs.getString("Nome"));
                 registro.setCPF(rs.getString("CPF"));
                 registro.setRG(rs.getString("RG"));
+                registro.setBairro(rs.getString("bairro"));
+                registro.setCEP(rs.getString("cep"));
+                registro.setCidade(rs.getString("cidade"));
+                registro.setComplemento(rs.getString("complemento"));
+                registro.setDEP1(rs.getInt("DEP1"));
+                registro.setDEP15(rs.getInt("DEP15"));
+                registro.setEndereco(rs.getString("endereco"));
+                registro.setEstado(rs.getString("estado"));
+                registro.setSalario1(rs.getDouble("salario1"));
+                registro.setSexo(rs.getString("sexo"));
+                registro.setVT(rs.getString("vt"));
+                Calendar data = Calendar.getInstance();
+                data.setTime(rs.getDate("data"));
+                registro.setData(data);
             }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -113,6 +130,37 @@ public class BdEmpregado extends bd.Bd {
             return registro;
 
         }
-    
+    public List pesquisa(String busca) {
+            String sql = "select * from empregado where nome like '%"+busca+"%'";
+            List lista = new ArrayList();
+            try {
+                Statement st = getCon().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    Empregado registro = new Empregado();
+                    registro.setNome(rs.getString("Nome"));
+                registro.setCPF(rs.getString("CPF"));
+                registro.setRG(rs.getString("RG"));
+                registro.setBairro(rs.getString("bairro"));
+                registro.setCEP(rs.getString("cep"));
+                registro.setCidade(rs.getString("cidade"));
+                registro.setComplemento(rs.getString("complemento"));
+                registro.setDEP1(rs.getInt("DEP1"));
+                registro.setDEP15(rs.getInt("DEP15"));
+                registro.setEndereco(rs.getString("endereco"));
+                registro.setEstado(rs.getString("estado"));
+                registro.setSalario1(rs.getDouble("salario1"));
+                registro.setSexo(rs.getString("sexo"));
+                registro.setVT(rs.getString("vt"));
+                Calendar data = Calendar.getInstance();
+                data.setTime(rs.getDate("data"));
+                registro.setData(data);
+                lista.add(registro);
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
+            }
+            return lista;
+        }
     
 }

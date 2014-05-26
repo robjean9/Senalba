@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-package Util.Telefone;
+package Util.TelefoneEmpregado;
 
 /**
  *
  * @author Robsonzinho
  */
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class BdTelefone extends bd.Bd {
 
@@ -44,6 +45,25 @@ public class BdTelefone extends bd.Bd {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao Excluir Telefone!\n" +e.getMessage());
         }
+    }
+    
+    public ArrayList pesquisa(String cpf){
+        String sql = "select * from Telefones where cpf_empregado='"+cpf+"'";
+        ArrayList lista = new ArrayList();
+        try{
+            Statement st = getCon().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Telefone tel  = new Telefone();
+                tel.setCpf_empregado(rs.getString("cpf_empregado"));
+                tel.setTelefone(rs.getString("telefone"));
+                tel.setTipo(rs.getString("tipo"));
+                lista.add(tel);
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar Telefone!\n" +e.getMessage());
+        }
+        return lista;
     }
     
     

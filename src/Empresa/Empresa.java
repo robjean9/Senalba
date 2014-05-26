@@ -12,6 +12,7 @@ package Empresa;
  */
 public class Empresa {
     private String Nome;
+    private String NomeFantasia;
     private String CNPJ;
     private String InscricaoEstadual;
     private String CNAE;
@@ -21,6 +22,12 @@ public class Empresa {
     private String Cidade;
     private String Bairro;
     private String Complemento;
+    private String Telefone1;
+    private String Telefone2;
+    private String Telefone3;
+    private String Email;
+    private String Observacoes;
+    private String ContatoAdm;
 
     /**
      * @return the Codigo
@@ -164,6 +171,104 @@ public class Empresa {
      */
     public void setComplemento(String Complemento) {
         this.Complemento = Complemento;
+    }
+
+    /**
+     * @return the NomeFantasia
+     */
+    public String getNomeFantasia() {
+        return NomeFantasia;
+    }
+
+    /**
+     * @param NomeFantasia the NomeFantasia to set
+     */
+    public void setNomeFantasia(String NomeFantasia) {
+        this.NomeFantasia = NomeFantasia;
+    }
+
+    /**
+     * @return the Telefone1
+     */
+    public String getTelefone1() {
+        return Telefone1;
+    }
+
+    /**
+     * @param Telefone1 the Telefone1 to set
+     */
+    public void setTelefone1(String Telefone1) {
+        this.Telefone1 = Telefone1;
+    }
+
+    /**
+     * @return the Telefone2
+     */
+    public String getTelefone2() {
+        return Telefone2;
+    }
+
+    /**
+     * @param Telefone2 the Telefone2 to set
+     */
+    public void setTelefone2(String Telefone2) {
+        this.Telefone2 = Telefone2;
+    }
+
+    /**
+     * @return the Telefone3
+     */
+    public String getTelefone3() {
+        return Telefone3;
+    }
+
+    /**
+     * @param Telefone3 the Telefone3 to set
+     */
+    public void setTelefone3(String Telefone3) {
+        this.Telefone3 = Telefone3;
+    }
+
+    /**
+     * @return the Email
+     */
+    public String getEmail() {
+        return Email;
+    }
+
+    /**
+     * @param Email the Email to set
+     */
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    /**
+     * @return the Observacoes
+     */
+    public String getObservacoes() {
+        return Observacoes;
+    }
+
+    /**
+     * @param Observacoes the Observacoes to set
+     */
+    public void setObservacoes(String Observacoes) {
+        this.Observacoes = Observacoes;
+    }
+
+    /**
+     * @return the ContatoAdm
+     */
+    public String getContatoAdm() {
+        return ContatoAdm;
+    }
+
+    /**
+     * @param ContatoAdm the ContatoAdm to set
+     */
+    public void setContatoAdm(String ContatoAdm) {
+        this.ContatoAdm = ContatoAdm;
     }
 
     /**

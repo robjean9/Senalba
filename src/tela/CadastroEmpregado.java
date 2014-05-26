@@ -8,11 +8,16 @@ package tela;
 
 import Empregado.BdEmpregado;
 import Empregado.Empregado;
+import Util.TelefoneEmpregado.BdTelefone;
+import Util.TelefoneEmpregado.Telefone;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -55,7 +60,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         }
         public void clienteToTela() {
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
-        txtData.setText(s.format(empregado.getData()));
+        txtData.setText(s.format(empregado.getData().getTime()));
         txtNome.setText(empregado.getNome());
         cVT.setSelectedItem(empregado.getVT()=="S"?"Sim":"Não");
         txtRG.setText(empregado.getRG());
@@ -69,8 +74,29 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         nDep15.setSelectedItem(empregado.getDEP15());
         nDep1.setSelectedItem(empregado.getDEP1());
         txtSalario1.setText(Double.toString(empregado.getSalario1()));
-        tSexo.setSelectedItem(empregado.getSexo()=="M"?"Masculino":"Feminino");
+        if(empregado.getSexo().equals("M")){
+            tSexo.setSelectedItem("Masculino");
+        }else{
+            tSexo.setSelectedItem("Feminino");
+        }
+        preeencheTabela();
     }
+        
+        
+        private void preeencheTabela(){
+            DefaultTableModel modelo = (DefaultTableModel) tTelefone.getModel();
+            int i = modelo.getRowCount();
+            while(i-->0){
+                modelo.removeRow(i);
+            }
+            BdTelefone bdt = new BdTelefone();
+            ArrayList c = (ArrayList) bdt.pesquisa(empregado.getCPF());
+            for(Iterator it = c.iterator(); it.hasNext();){
+                Telefone tel = (Telefone) it.next();
+                modelo.addRow(new Object[]{tel.getTipo(), tel.getTelefone()});
+            }
+        
+        }
        
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,10 +148,22 @@ public class CadastroEmpregado extends javax.swing.JFrame {
         bCadastroTelefone = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabTelefone2 = new javax.swing.JTable();
+        tTelefone = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Empregado - SindSócio");
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Identificação"));
 
@@ -485,7 +523,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
                 .addGap(135, 135, 135))
         );
 
-        tabTelefone2.setModel(new javax.swing.table.DefaultTableModel(
+        tTelefone.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -495,8 +533,26 @@ public class CadastroEmpregado extends javax.swing.JFrame {
             new String [] {
                 "Tipo", "Telefone"
             }
-        ));
-        jScrollPane3.setViewportView(tabTelefone2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tTelefone.getTableHeader().setReorderingAllowed(false);
+        tTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tTelefoneKeyPressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tTelefone);
+        if (tTelefone.getColumnModel().getColumnCount() > 0) {
+            tTelefone.getColumnModel().getColumn(0).setResizable(false);
+            tTelefone.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -542,8 +598,8 @@ public class CadastroEmpregado extends javax.swing.JFrame {
 
     private void bCadastroTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastroTelefoneActionPerformed
         CadastroTelefone t = new CadastroTelefone();
-        t.setCpf(getEmpregado().getCPF());
-        t.setNome(getEmpregado().getNome());
+        telaToCliente();
+        t.setEmpregado(empregado);
         t.setVisible(true);
     }//GEN-LAST:event_bCadastroTelefoneActionPerformed
 
@@ -588,6 +644,25 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
 
     }//GEN-LAST:event_txtNomeKeyPressed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        preeencheTabela();
+        
+    }//GEN-LAST:event_formFocusGained
+
+    private void tTelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tTelefoneKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_DELETE){
+            DefaultTableModel modelo = (DefaultTableModel) tTelefone.getModel();
+            String telefone = (String) modelo.getValueAt(tTelefone.getSelectedRow(), 1);
+            BdTelefone bdt = new BdTelefone();
+            bdt.exclui(telefone);
+            preeencheTabela();
+       }
+    }//GEN-LAST:event_tTelefoneKeyPressed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preeencheTabela();        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -656,7 +731,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
     private javax.swing.JComboBox nDep15;
     private javax.swing.JComboBox tEstado;
     private javax.swing.JComboBox tSexo;
-    private javax.swing.JTable tabTelefone2;
+    private javax.swing.JTable tTelefone;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JFormattedTextField txtCPF;
@@ -681,6 +756,7 @@ public class CadastroEmpregado extends javax.swing.JFrame {
      */
     public void setEmpregado(Empregado empregado) {
         this.empregado = empregado;
+        clienteToTela();
     }
 
     /**

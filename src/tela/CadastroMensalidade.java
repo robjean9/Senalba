@@ -9,6 +9,7 @@ package tela;
 import Mensalidade.BdMensalidade;
 import javax.swing.JOptionPane;
 import Mensalidade.Mensalidade;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -22,9 +23,10 @@ private Mensalidade mensalidade = new Mensalidade();
     public CadastroMensalidade() {
         initComponents();
         bd = new BdMensalidade();
-    }
+        tCodigo.setFocusable(false);
+        tNome.setFocusable(true);
+                }
     private void telaToCadastroMensalidade() {
-        getMensalidade().setCodigo(Integer.parseInt(tCodigo.getText()));
         getMensalidade().setNome(tNome.getText());
         getMensalidade().setPreco(Double.parseDouble(tPreco.getText()));
     }
@@ -59,7 +61,7 @@ private Mensalidade mensalidade = new Mensalidade();
         bSalva = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SindSócio - Cadastro de Mensalidades");
 
         bCancela.setText("Cancelar");
@@ -76,7 +78,20 @@ private Mensalidade mensalidade = new Mensalidade();
 
         jLabel2.setText("Preço");
 
+        tPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tPrecoActionPerformed(evt);
+            }
+        });
+        tPreco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tPrecoKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("Código");
+
+        tCodigo.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,14 +169,14 @@ private Mensalidade mensalidade = new Mensalidade();
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancela)
                     .addComponent(bSalva))
-                .addContainerGap())
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(408, 325));
+        setSize(new java.awt.Dimension(408, 360));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,6 +194,23 @@ private Mensalidade mensalidade = new Mensalidade();
         JOptionPane.showMessageDialog (null, "Cadastrado Com Sucesso");
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_bSalvaActionPerformed
+
+    private void tPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tPrecoActionPerformed
+
+    private void tPrecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPrecoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            telaToCadastroMensalidade();
+        if (isNovo()){
+            getBd().insere(getMensalidade());
+        } else {
+            getBd().atualiza(getMensalidade());
+        }
+        JOptionPane.showMessageDialog (null, "Cadastrado Com Sucesso");
+        this.dispose();
+        }
+    }//GEN-LAST:event_tPrecoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -240,6 +272,7 @@ private Mensalidade mensalidade = new Mensalidade();
      */
     public void setMensalidade(Mensalidade mensalidade) {
         this.mensalidade = mensalidade;
+        cadastroMensalidadeToTela();
     }
 
     /**
