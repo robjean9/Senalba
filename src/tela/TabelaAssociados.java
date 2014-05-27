@@ -73,6 +73,7 @@ public class TabelaAssociados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jAssociado = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        bNovo = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,6 +121,13 @@ public class TabelaAssociados extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Associados Senalba - PG");
+
+        bNovo.setText("Cadastrar novo");
+        bNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNovoActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,12 +135,9 @@ public class TabelaAssociados extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
@@ -140,9 +145,13 @@ public class TabelaAssociados extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(bFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(64, 64, 64)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                                .addComponent(bFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bNovo))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +162,8 @@ public class TabelaAssociados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(bFiltro))
+                    .addComponent(bFiltro)
+                    .addComponent(bNovo))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -167,7 +177,7 @@ public class TabelaAssociados extends javax.swing.JFrame {
             int row = jAssociado.rowAtPoint(p);
             DefaultTableModel modelo = (DefaultTableModel) jAssociado.getModel();
             String CPF =(String)  modelo.getValueAt(row, 2);
-            CadastroEmpregado t = new CadastroEmpregado();
+            CadastroAssociado t = new CadastroAssociado();
             t.setNovo(false);
             t.setEmpregado(bd.localiza(CPF));
             t.setVisible(true);       // TODO add your handling code her
@@ -177,6 +187,12 @@ public class TabelaAssociados extends javax.swing.JFrame {
     private void bFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFiltroActionPerformed
     preencheTabelapesquisa();        // TODO add your handling code here:
     }//GEN-LAST:event_bFiltroActionPerformed
+
+    private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
+        // TODO add your handling code here:
+        CadastroAssociado t = new CadastroAssociado();
+        t.setVisible(true);  
+    }//GEN-LAST:event_bNovoActionPerformed
 
     
     
@@ -217,6 +233,7 @@ public class TabelaAssociados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bFiltro;
+    private javax.swing.JButton bNovo;
     private javax.swing.JTable jAssociado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

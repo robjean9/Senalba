@@ -123,7 +123,7 @@ public class TelaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bEmpregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmpregadoActionPerformed
-        CadastroEmpregado t = new CadastroEmpregado();
+        TabelaAssociados t = new TabelaAssociados();
         t.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_bEmpregadoActionPerformed
 
