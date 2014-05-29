@@ -5,8 +5,9 @@
         <group>
             <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/TelaPrincipal.java</file>
             <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/TelaNormal.java</file>
-            <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/TabelaAssociados.java</file>
-            <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/TelaInicio.java</file>
+            <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/TabelaEmpresa.java</file>
+            <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/CadastroEmpresa.java</file>
+            <file>file:/C:/Users/Breus/Documents/GitHub/Senalba/src/tela/TelaInicioEmpresa.java</file>
         </group>
     </open-files>
 </project-private>
