@@ -6,48 +6,24 @@
 
 package tela;
 
-import Empresa.BdEmpresa;
-import java.awt.Point;
-import Empresa.Empresa;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Breus
  */
 public class TelaNormal extends javax.swing.JFrame {
-BdEmpresa bd = new BdEmpresa();
+
     /**
      * Creates new form TelaNormal
      */
     public TelaNormal() {
          URL url = this.getClass().getResource("/img/icon.png");  
        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
-       this.setIconImage(imagemTitulo);
+       this.setIconImage(imagemTitulo); 
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        preencheTabela();
-    }
-    
-    private void preencheTabela(){
-        BdEmpresa bde = new BdEmpresa();
-        DefaultTableModel modelo = (DefaultTableModel) tEmpresas.getModel();
-        int i = modelo.getRowCount();
-        while(i-->0){
-            modelo.removeRow(i);
-        }
-        ArrayList c = bde.pesquisa(tNome.getText());
-        for(Iterator it = c.iterator(); it.hasNext();){
-            Empresa emp = (Empresa) it.next();
-            modelo.addRow(new Object[]{emp.getCNPJ(), emp.getNome()});
-        }
-        
     }
 
     /**
@@ -59,152 +35,21 @@ BdEmpresa bd = new BdEmpresa();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tEmpresas = new javax.swing.JTable();
-        tNome = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        bVoltar = new javax.swing.JButton();
-        bSeleciona = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        tEmpresas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "CNPJ", "Nome"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tEmpresas.getTableHeader().setReorderingAllowed(false);
-        tEmpresas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tEmpresasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tEmpresas);
-        if (tEmpresas.getColumnModel().getColumnCount() > 0) {
-            tEmpresas.getColumnModel().getColumn(0).setResizable(false);
-            tEmpresas.getColumnModel().getColumn(1).setResizable(false);
-        }
-
-        jLabel1.setText("Nome:");
-
-        jButton2.setText("OK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
-
-        bVoltar.setFont(new java.awt.Font("Verdana", 2, 14)); // NOI18N
-        bVoltar.setText("VOLTAR AO MENU");
-        bVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bVoltarActionPerformed(evt);
-            }
-        });
-
-        bSeleciona.setFont(new java.awt.Font("Verdana", 2, 14)); // NOI18N
-        bSeleciona.setText("SELECIONAR EMPRESA");
-        bSeleciona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSelecionaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(bVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bSeleciona, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 690, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bSeleciona, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+            .addGap(0, 374, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(950, 540));
-        setLocationRelativeTo(null);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tEmpresasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEmpresasMouseClicked
-        // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
-            Point p = evt.getPoint();
-            int row = tEmpresas.rowAtPoint(p);
-            DefaultTableModel modelo = (DefaultTableModel) tEmpresas.getModel();
-            String CNPJ =(String)  modelo.getValueAt(row, 0);
-            TelaInicioEmpresa t = new TelaInicioEmpresa();
-            t.setNovo(false);
-            t.setEmpresa(bd.localiza(CNPJ));
-            t.setVisible(true);
-            this.dispose();
-        }
-    }//GEN-LAST:event_tEmpresasMouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        preencheTabela();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void bSelecionaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSelecionaActionPerformed
-            TelaInicioEmpresa t = new TelaInicioEmpresa();
-            t.setNovo(false);
-            t.setVisible(true);    
-            this.dispose();
-// TODO add your handling code here:
-    }//GEN-LAST:event_bSelecionaActionPerformed
-
-    private void bVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVoltarActionPerformed
-            this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_bVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,13 +87,5 @@ BdEmpresa bd = new BdEmpresa();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bSeleciona;
-    private javax.swing.JButton bVoltar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tEmpresas;
-    private javax.swing.JTextField tNome;
     // End of variables declaration//GEN-END:variables
 }
