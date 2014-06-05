@@ -210,7 +210,7 @@ public class TelaMensalidade extends javax.swing.JFrame {
             // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
 
-<<<<<<< HEAD
+
     private void mAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAlteraActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
         if (tLocalizaMensalidade.getSelectedRow() != -1) {
@@ -224,7 +224,7 @@ public class TelaMensalidade extends javax.swing.JFrame {
         }    // TODO add your handling code here:
     }//GEN-LAST:event_mAlteraActionPerformed
 
-    private void mExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExcluiActionPerformed
+    private void mExcluiActionPerformed(java.awt.event.ActionEvent evt) {                                        
         DefaultTableModel modelo = (DefaultTableModel) tLocalizaMensalidade.getModel();
         if (tLocalizaMensalidade.getSelectedRow() != -1) {
             String Nome =  modelo.getValueAt(tLocalizaMensalidade.getSelectedRow(), 1).toString();
@@ -232,7 +232,8 @@ public class TelaMensalidade extends javax.swing.JFrame {
             preencheTabela();
         } else {
             JOptionPane.showMessageDialog(this, "Não há nenhuma mensalidade selecionada");
-=======
+        }
+    }
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
      preencheTabelapesquisa();   // TODO add your handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
@@ -247,7 +248,7 @@ public class TelaMensalidade extends javax.swing.JFrame {
             t.setNovo(false);
             t.setMensalidade(bd.localiza(Codigo));
             t.setVisible(true);       // TODO add your handling code her
->>>>>>> 8889883ff06a1e28200b6f40aef48d3754e372f5
+
         }        // TODO add your handling code here:
     }//GEN-LAST:event_tLocalizaMensalidadeMouseClicked
 
