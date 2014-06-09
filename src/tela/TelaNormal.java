@@ -6,15 +6,23 @@
 
 package tela;
 
+import Empresa.BdEmpresa;
+import Empresa.Empresa;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Breus
  */
 public class TelaNormal extends javax.swing.JFrame {
+    BdEmpresa bd;
 
     /**
      * Creates new form TelaNormal
@@ -24,6 +32,24 @@ public class TelaNormal extends javax.swing.JFrame {
        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);  
        this.setIconImage(imagemTitulo); 
         initComponents();
+        preencheTabela();
+        bd = new BdEmpresa();
+    }
+    
+    
+    private void preencheTabela(){
+        BdEmpresa bde = new BdEmpresa();
+        DefaultTableModel modelo = (DefaultTableModel) tEmpresas.getModel();
+        int i = modelo.getRowCount();
+        while(i-->0){
+            modelo.removeRow(i);
+        }
+        ArrayList c = bde.pesquisa(tNome.getText());
+        for(Iterator it = c.iterator(); it.hasNext();){
+            Empresa emp = (Empresa) it.next();
+            modelo.addRow(new Object[]{emp.getCNPJ(), emp.getNome()});
+        }
+        
     }
 
     /**
@@ -35,21 +61,132 @@ public class TelaNormal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        tNome = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tEmpresas = new javax.swing.JTable();
+        bSeleciona = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Nome:");
+
+        jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        tEmpresas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "CNPJ", "Nome"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tEmpresas.getTableHeader().setReorderingAllowed(false);
+        tEmpresas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tEmpresasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tEmpresas);
+
+        bSeleciona.setText("Selecionar Empresa");
+        bSeleciona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSelecionaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 2, 18)); // NOI18N
+        jLabel2.setText("Selecione a Empresa para entrar no módulo Contábil");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bSeleciona, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bSeleciona, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        preencheTabela();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tEmpresasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEmpresasMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            Point p = evt.getPoint();
+            int row = tEmpresas.rowAtPoint(p);
+            DefaultTableModel modelo = (DefaultTableModel) tEmpresas.getModel();
+            String CNPJ = (String)  modelo.getValueAt(row, 0);
+            TelaContabil t = new TelaContabil();
+            t.setEmpresa(bd.localiza(CNPJ));
+            t.setVisible(true);
+        }
+    }//GEN-LAST:event_tEmpresasMouseClicked
+
+    private void bSelecionaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSelecionaActionPerformed
+    DefaultTableModel modelo = (DefaultTableModel) tEmpresas.getModel();
+        if (tEmpresas.getSelectedRow() != -1) {
+            String CNPJ =  modelo.getValueAt(tEmpresas.getSelectedRow(), 0).toString();
+            TelaContabil t = new TelaContabil();
+            t.setEmpresa(bd.localiza(CNPJ));
+            t.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nenhuma empresa selecionada");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_bSelecionaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +224,12 @@ public class TelaNormal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bSeleciona;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tEmpresas;
+    private javax.swing.JTextField tNome;
     // End of variables declaration//GEN-END:variables
 }

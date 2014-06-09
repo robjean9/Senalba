@@ -222,7 +222,7 @@ private usuario.usuario usr;
     public void setUsr(usuario.usuario usr) {
         this.usr = usr;
         if (usr.getTipo().equals("admin")){
-          JOptionPane.showMessageDialog(this, "Você é admin");
+          //JOptionPane.showMessageDialog(this, "Você é admin");
           lUser1.setText("Usuario Administrador");
         }
         if(usr.getTipo().equals("user")){
