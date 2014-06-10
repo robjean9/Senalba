@@ -5,20 +5,31 @@
  */
 
 package tela;
-
+import PlanSaude.PlanSaude;
+import PlanSaude.BdPlanSaude;
+import Util.TelefoneEmpregado.BdTelefone;
+import java.util.HashSet;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Welington
  */
 public class CadastroPlanoSaude extends javax.swing.JFrame {
-
+    private PlanSaude pln = new PlanSaude();
+            
     /**
      * Creates new form CadastroPlanoSaude
      */
     public CadastroPlanoSaude() {
         initComponents();
     }
-
+    private void telaToPlanSaude(){
+        pln.setCodigo(tCod.getText());
+        pln.setNome(tNome.getText());
+        pln.setValor(tValor.getText());
+        
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,10 +42,11 @@ public class CadastroPlanoSaude extends javax.swing.JFrame {
         bCancela = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        vPlano = new javax.swing.JTextField();
+        tNome = new javax.swing.JTextField();
+        tCod = new javax.swing.JTextField();
+        tValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SindSócio - Cadastro de Plano de Saúde");
@@ -52,12 +64,21 @@ public class CadastroPlanoSaude extends javax.swing.JFrame {
 
         jLabel2.setText("Valor do Plano");
 
+        jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(bCancela)
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
@@ -72,9 +93,9 @@ public class CadastroPlanoSaude extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(39, 39, 39)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(vPlano))
+                    .addComponent(tCod, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(tNome)
+                    .addComponent(tValor))
                 .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,17 +104,19 @@ public class CadastroPlanoSaude extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(bCancela)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bCancela)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -106,6 +129,16 @@ public class CadastroPlanoSaude extends javax.swing.JFrame {
     
 // TODO add your handling code here:
     }//GEN-LAST:event_bCancelaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        telaToPlanSaude();
+        BdPlanSaude bdp = new BdPlanSaude();
+            bdp.insere(pln);
+        bdp.fecha();
+        JOptionPane.showMessageDialog(null, "Plano Cadastrado Cadastrado com sucesso!");
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,11 +177,12 @@ public class CadastroPlanoSaude extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancela;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField vPlano;
+    private javax.swing.JTextField tCod;
+    private javax.swing.JTextField tNome;
+    private javax.swing.JTextField tValor;
     // End of variables declaration//GEN-END:variables
 }

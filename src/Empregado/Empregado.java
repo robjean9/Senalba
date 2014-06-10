@@ -6,6 +6,7 @@
 
 package Empregado;
 
+import static com.oracle.jrockit.jfr.ContentType.Bytes;
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -29,7 +30,7 @@ public class Empregado {
     private Double Salario1;
     private Calendar Data;
     private String Sexo;
-
+    private byte[] foto;
     /**
      * @return the Nome
      */

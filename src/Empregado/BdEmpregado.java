@@ -29,7 +29,7 @@ public class BdEmpregado extends bd.Bd {
         }
     }
     public void insere(Empregado empregado) {
-        String sql = "insert into empregado(Nome,RG,CPF,Endereco,CEP,Cidade,Bairro,Estado,Complemento,DEP1,DEP15,Salario1,VT,Data,Sexo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into empregado(Nome,RG,CPF,Endereco,CEP,Cidade,Bairro,Estado,Complemento,DEP1,DEP15,Salario1,VT,Data,Sexo,foto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empregado.getNome());
@@ -47,7 +47,7 @@ public class BdEmpregado extends bd.Bd {
             ps.setString(13, empregado.getVT());
             ps.setDate(14,new java.sql.Date(empregado.getData().getTime().getTime()));
             ps.setString(15, empregado.getSexo());
-
+            ps.setBytes(16, )
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
