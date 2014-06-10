@@ -11,17 +11,11 @@ import Empregado.Empregado;
 import Util.TelefoneEmpregado.BdTelefone;
 import Util.TelefoneEmpregado.Telefone;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -84,9 +78,6 @@ public class CadastroAssociado extends javax.swing.JFrame {
             tSexo.setSelectedItem("Masculino");
         }else{
             tSexo.setSelectedItem("Feminino");
-        }
-        if(empregado.getFoto()!=null){
-            
         }
         preeencheTabela();
     }
@@ -158,8 +149,6 @@ public class CadastroAssociado extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tTelefone = new javax.swing.JTable();
-        tFoto = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Empregado - SindSócio");
@@ -531,7 +520,7 @@ public class CadastroAssociado extends javax.swing.JFrame {
                             .addComponent(btnSalvar)
                             .addComponent(btnCancelar)))
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(153, 153, 153))
+                .addGap(135, 135, 135))
         );
 
         tTelefone.setModel(new javax.swing.table.DefaultTableModel(
@@ -582,13 +571,6 @@ public class CadastroAssociado extends javax.swing.JFrame {
                 .addGap(37, 37, 37))
         );
 
-        jButton1.setText("Enviar Foto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -596,12 +578,7 @@ public class CadastroAssociado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addComponent(tFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -610,18 +587,9 @@ public class CadastroAssociado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(22, Short.MAX_VALUE))
-                            .addComponent(tFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(1012, 489));
@@ -696,29 +664,6 @@ public class CadastroAssociado extends javax.swing.JFrame {
         preeencheTabela();        // TODO add your handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser file = new JFileChooser();
-        file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int i = file.showSaveDialog(null);
-        if(i == 1){
-            tFoto.setText("Nenhum Arquivo Selecionado!");
-            
-        }else{
-            File arquivo = file.getSelectedFile();
-            try{
-                empregado.setFoto(ImageAsByteArray(arquivo));
-            } catch (IOException ex) {
-                Logger.getLogger(CadastroAssociado.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private byte[] ImageAsByteArray(File fnew)throws IOException{ 
-        byte[] imageByte= Files.readAllBytes(fnew.toPath()); // converte em arraybyte o arquivo selecionado
-        return imageByte;
-    }
-
-    
     /**
      * @param args the command line arguments
      */
@@ -759,7 +704,6 @@ public class CadastroAssociado extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cVT;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -786,7 +730,6 @@ public class CadastroAssociado extends javax.swing.JFrame {
     private javax.swing.JComboBox nDep1;
     private javax.swing.JComboBox nDep15;
     private javax.swing.JComboBox tEstado;
-    private javax.swing.JLabel tFoto;
     private javax.swing.JComboBox tSexo;
     private javax.swing.JTable tTelefone;
     private javax.swing.JTextField txtBairro;

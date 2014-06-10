@@ -29,7 +29,6 @@ public class Empregado {
     private Double Salario1;
     private Calendar Data;
     private String Sexo;
-    private byte[] foto;
 
     /**
      * @return the Nome
@@ -244,20 +243,6 @@ public class Empregado {
      */
     public void setSexo(String Sexo) {
         this.Sexo = Sexo;
-    }
-
-    /**
-     * @return the foto
-     */
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    /**
-     * @param foto the foto to set
-     */
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 
 
