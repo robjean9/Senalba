@@ -29,7 +29,7 @@ public class BdEmpregado extends bd.Bd {
         }
     }
     public void insere(Empregado empregado) {
-        String sql = "insert into empregado(Nome,RG,CPF,Endereco,CEP,Cidade,Bairro,Estado,Complemento,DEP1,DEP15,Salario1,VT,Data,Sexo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into empregado(Nome,RG,CPF,Endereco,CEP,Cidade,Bairro,Estado,Complemento,DEP1,DEP15,Salario1,VT,Data,Sexo, foto) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empregado.getNome());
@@ -46,6 +46,7 @@ public class BdEmpregado extends bd.Bd {
             ps.setDouble(12, empregado.getSalario1());
             ps.setString(13, empregado.getVT());
             ps.setDate(14,new java.sql.Date(empregado.getData().getTime().getTime()));
+            ps.setBytes(15, empregado.getFoto());
             ps.setString(15, empregado.getSexo());
 
             ps.execute();
@@ -55,7 +56,7 @@ public class BdEmpregado extends bd.Bd {
     }
 
     public void atualiza(Empregado empregado) {
-        String sql = "update empregado set Nome=?, RG=?, Endereco=?, CEP=?, Cidade=?, Bairro=?, Estado=?, Complemento=?, DEP1=?, DEP15=?, Salario1=?, VT=?, Data=?, Sexo=? where CPF=?";
+        String sql = "update empregado set Nome=?, RG=?, Endereco=?, CEP=?, Cidade=?, Bairro=?, Estado=?, Complemento=?, DEP1=?, DEP15=?, Salario1=?, VT=?, Data=?, Sexo=?, foto=? where CPF=?";
         try {
             PreparedStatement ps = getCon().prepareStatement(sql);
             ps.setString(1, empregado.getNome());
@@ -72,7 +73,8 @@ public class BdEmpregado extends bd.Bd {
             ps.setString(12, empregado.getVT());
             ps.setDate(13,new java.sql.Date(empregado.getData().getTime().getTime()));
             ps.setString(14, empregado.getSexo());
-            ps.setString(15, empregado.getCPF());
+            ps.setBytes(15, empregado.getFoto());
+            ps.setString(16, empregado.getCPF());
 
             ps.execute();
         } catch (SQLException e) {
@@ -120,6 +122,7 @@ public class BdEmpregado extends bd.Bd {
                 registro.setSalario1(rs.getDouble("salario1"));
                 registro.setSexo(rs.getString("sexo"));
                 registro.setVT(rs.getString("vt"));
+                registro.setFoto(rs.getBytes("foto"));
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate("data"));
                 registro.setData(data);
@@ -152,6 +155,7 @@ public class BdEmpregado extends bd.Bd {
                 registro.setSalario1(rs.getDouble("salario1"));
                 registro.setSexo(rs.getString("sexo"));
                 registro.setVT(rs.getString("vt"));
+                registro.setFoto(rs.getBytes("foto"));
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate("data"));
                 registro.setData(data);
