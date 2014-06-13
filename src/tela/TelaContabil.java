@@ -22,9 +22,10 @@ public class TelaContabil extends javax.swing.JFrame {
      */
     public TelaContabil() {
         bd = new BdEmpresa();
+        
         initComponents();
     }
-    
+    String tipo = null;
     
     private void empresaToTela() {
         tNome.setText(getEmpresa().getNome());
@@ -75,6 +76,11 @@ public class TelaContabil extends javax.swing.JFrame {
         jMenu3.add(bSindical);
 
         bAssistencial.setText("Assistencial");
+        bAssistencial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAssistencialActionPerformed(evt);
+            }
+        });
         jMenu3.add(bAssistencial);
 
         jMenu1.add(jMenu3);
@@ -118,10 +124,20 @@ public class TelaContabil extends javax.swing.JFrame {
     private void bSindicalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSindicalActionPerformed
         TelaLancamentoSindical t = new TelaLancamentoSindical();
             t.setNovo(false);
+            tipo = "SINDICAL";
             t.setEmpresa(bd.localiza(getEmpresa().getCNPJ()));
             t.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_bSindicalActionPerformed
+
+    private void bAssistencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAssistencialActionPerformed
+        // TODO add your handling code here:
+        TelaLancamentoSindical t = new TelaLancamentoSindical();
+            t.setNovo(false);
+            tipo = "ASSISTÊNCIAL";
+            t.setEmpresa(bd.localiza(getEmpresa().getCNPJ()));
+            t.setVisible(true);
+    }//GEN-LAST:event_bAssistencialActionPerformed
 
     /**
      * @param args the command line arguments

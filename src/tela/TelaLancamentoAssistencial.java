@@ -6,6 +6,10 @@
 
 package tela;
 
+import Contrib.BdContrib;
+import Contrib.Contrib;
+import Empresa.BdEmpresa;
+import Empresa.Empresa;
 import Contrib.Contrib;
 import Empresa.BdEmpresa;
 import Contrib.BdContrib;
@@ -16,24 +20,21 @@ import javax.swing.JOptionPane;
  *
  * @author Breus
  */
-public class TelaLancamentoSindical extends javax.swing.JFrame {
-    private boolean novo=true;
+public class TelaLancamentoAssistencial extends javax.swing.JFrame {
+ private boolean novo=true;
     private Empresa empresa = new Empresa();
     private BdEmpresa bd;
     private BdContrib bdC;
     private Contrib c = new Contrib();
-
     /**
-     * Creates new form TelaLancamentoSindical
+     * Creates new form TelaLancamentoAssistencial
      */
-    public TelaLancamentoSindical() {
+    public TelaLancamentoAssistencial() {
         bd = new BdEmpresa();
         bdC = new BdContrib();
         initComponents();
     }
-    
-    
-   private void telaToContribuicao() {
+private void telaToContribuicao() {
         getC().setTipo(Contrib.Tipo.SINDICAL);
         getC().setCNPJ(tCNPJ.getText());
         getC().setValor(Double.parseDouble(tValor.getText()));
@@ -46,7 +47,6 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
         tValor.setText(Double.toString(getC().getValor()));
         tDataPag.setText(getC().getDataPag());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,27 +56,17 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tCNPJ = new javax.swing.JFormattedTextField();
+        tDataPag = new javax.swing.JFormattedTextField();
+        bSalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tContribuicao = new javax.swing.JTextField();
         tValor = new javax.swing.JTextField();
-        tCNPJ = new javax.swing.JFormattedTextField();
-        tDataPag = new javax.swing.JFormattedTextField();
-        bSalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setText("Contribuição");
-
-        jLabel2.setText("CNPJ");
-
-        jLabel3.setText("Valor");
-
-        jLabel4.setText("Data do Pagamento");
-
-        tContribuicao.setEditable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tCNPJ.setEditable(false);
 
@@ -92,6 +82,16 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
                 bSalvarActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Contribuição");
+
+        jLabel2.setText("CNPJ");
+
+        jLabel3.setText("Valor");
+
+        jLabel4.setText("Data do Pagamento");
+
+        tContribuicao.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,11 +110,11 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
                     .addComponent(tValor)
                     .addComponent(tCNPJ)
                     .addComponent(tDataPag))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bSalvar)
-                .addGap(122, 122, 122))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,18 +135,17 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bSalvar)
                 .addGap(51, 51, 51))
         );
 
-        setSize(new java.awt.Dimension(513, 410));
-        setLocationRelativeTo(null);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-    telaToContribuicao();
-    bdC.insere(getC());
+        telaToContribuicao();
+        bdC.insere(getC());
         JOptionPane.showMessageDialog (null, "Cadastrado Com Sucesso");
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_bSalvarActionPerformed
@@ -168,20 +167,20 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLancamentoSindical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLancamentoAssistencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLancamentoSindical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLancamentoAssistencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLancamentoSindical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLancamentoAssistencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLancamentoSindical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLancamentoAssistencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLancamentoSindical().setVisible(true);
+                new TelaLancamentoAssistencial().setVisible(true);
             }
         });
     }
@@ -197,75 +196,4 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tDataPag;
     private javax.swing.JTextField tValor;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the novo
-     */
-    public boolean isNovo() {
-        return novo;
-    }
-
-    /**
-     * @param novo the novo to set
-     */
-    public void setNovo(boolean novo) {
-        this.novo = novo;
-    }
-
-    /**
-     * @return the empresa
-     */
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    /**
-     * @param empresa the empresa to set
-     */
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-        tCNPJ.setText(empresa.getCNPJ());
-    }
-
-    /**
-     * @return the bd
-     */
-    public BdEmpresa getBd() {
-        return bd;
-    }
-
-    /**
-     * @param bd the bd to set
-     */
-    public void setBd(BdEmpresa bd) {
-        this.bd = bd;
-    }
-
-    /**
-     * @return the c
-     */
-    public Contrib getC() {
-        return c;
-    }
-
-    /**
-     * @param c the c to set
-     */
-    public void setC(Contrib c) {
-        this.c = c;
-    }
-
-    /**
-     * @return the bdC
-     */
-    public BdContrib getBdC() {
-        return bdC;
-    }
-
-    /**
-     * @param bdC the bdC to set
-     */
-    public void setBdC(BdContrib bdC) {
-        this.bdC = bdC;
-    }
 }
