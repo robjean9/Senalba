@@ -6,10 +6,6 @@
 
 package tela;
 
-import Contrib.BdContrib;
-import Contrib.Contrib;
-import Empresa.BdEmpresa;
-import Empresa.Empresa;
 import Contrib.Contrib;
 import Empresa.BdEmpresa;
 import Contrib.BdContrib;
@@ -21,32 +17,36 @@ import javax.swing.JOptionPane;
  * @author Breus
  */
 public class TelaLancamentoAssistencial extends javax.swing.JFrame {
- private boolean novo=true;
+    private boolean novo=true;
     private Empresa empresa = new Empresa();
     private BdEmpresa bd;
     private BdContrib bdC;
     private Contrib c = new Contrib();
+
     /**
-     * Creates new form TelaLancamentoAssistencial
+     * Creates new form TelaLancamentoSindical
      */
     public TelaLancamentoAssistencial() {
         bd = new BdEmpresa();
         bdC = new BdContrib();
         initComponents();
     }
-private void telaToContribuicao() {
-        getC().setTipo(Contrib.Tipo.SINDICAL);
+    
+    
+   private void telaToContribuicao() {
+        getC().setTipo(Contrib.Tipo.ASSISTENCIAL);
         getC().setCNPJ(tCNPJ.getText());
         getC().setValor(Double.parseDouble(tValor.getText()));
         getC().setDataPag(tDataPag.getText());
         }
     
     private void contribuicaoToTela() {
-        getC().setTipo(Contrib.Tipo.SINDICAL);
+        getC().setTipo(Contrib.Tipo.ASSISTENCIAL);
         tCNPJ.setText(getC().getCNPJ());
         tValor.setText(Double.toString(getC().getValor()));
         tDataPag.setText(getC().getDataPag());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,17 +56,24 @@ private void telaToContribuicao() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tCNPJ = new javax.swing.JFormattedTextField();
-        tDataPag = new javax.swing.JFormattedTextField();
-        bSalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        tContribuicao = new javax.swing.JTextField();
         tValor = new javax.swing.JTextField();
+        tCNPJ = new javax.swing.JFormattedTextField();
+        tDataPag = new javax.swing.JFormattedTextField();
+        bSalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Contribuição assistêncial");
+
+        jLabel2.setText("CNPJ");
+
+        jLabel3.setText("Valor");
+
+        jLabel4.setText("Data do Pagamento");
 
         tCNPJ.setEditable(false);
 
@@ -83,47 +90,40 @@ private void telaToContribuicao() {
             }
         });
 
-        jLabel1.setText("Contribuição");
-
-        jLabel2.setText("CNPJ");
-
-        jLabel3.setText("Valor");
-
-        jLabel4.setText("Data do Pagamento");
-
-        tContribuicao.setEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(312, Short.MAX_VALUE)
+                .addComponent(bSalvar)
+                .addGap(122, 122, 122))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tContribuicao, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(tValor)
-                    .addComponent(tCNPJ)
-                    .addComponent(tDataPag))
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bSalvar)
-                .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(40, 40, 40))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tValor)
+                            .addComponent(tCNPJ)
+                            .addComponent(tDataPag, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tContribuicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,17 +135,18 @@ private void telaToContribuicao() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(bSalvar)
                 .addGap(51, 51, 51))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(513, 410));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-        telaToContribuicao();
-        bdC.insere(getC());
+    telaToContribuicao();
+    bdC.insere(getC());
         JOptionPane.showMessageDialog (null, "Cadastrado Com Sucesso");
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_bSalvarActionPerformed
@@ -192,8 +193,78 @@ private void telaToContribuicao() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JFormattedTextField tCNPJ;
-    private javax.swing.JTextField tContribuicao;
     private javax.swing.JFormattedTextField tDataPag;
     private javax.swing.JTextField tValor;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the novo
+     */
+    public boolean isNovo() {
+        return novo;
+    }
+
+    /**
+     * @param novo the novo to set
+     */
+    public void setNovo(boolean novo) {
+        this.novo = novo;
+    }
+
+    /**
+     * @return the empresa
+     */
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    /**
+     * @param empresa the empresa to set
+     */
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+        tCNPJ.setText(empresa.getCNPJ());
+    }
+
+    /**
+     * @return the bd
+     */
+    public BdEmpresa getBd() {
+        return bd;
+    }
+
+    /**
+     * @param bd the bd to set
+     */
+    public void setBd(BdEmpresa bd) {
+        this.bd = bd;
+    }
+
+    /**
+     * @return the c
+     */
+    public Contrib getC() {
+        return c;
+    }
+
+    /**
+     * @param c the c to set
+     */
+    public void setC(Contrib c) {
+        this.c = c;
+    }
+
+    /**
+     * @return the bdC
+     */
+    public BdContrib getBdC() {
+        return bdC;
+    }
+
+    /**
+     * @param bdC the bdC to set
+     */
+    public void setBdC(BdContrib bdC) {
+        this.bdC = bdC;
+    }
 }

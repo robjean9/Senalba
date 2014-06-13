@@ -8,7 +8,10 @@ package Contrib;
 
 import Empregado.Empregado;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,7 +39,24 @@ public class BdContrib extends bd.Bd {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
         }
     }
-    
+    public List relatorio(String CNPJ) {
+          String sql = "select * from contribuicaoEmp";
+            List lista = new ArrayList();
+            try {
+               PreparedStatement st = getCon().prepareStatement(sql);
+               ResultSet rs = st.executeQuery();
+               while (rs.next()) {
+               Empregado registro = new Empregado();
+               registro.setCNPJ(rs.getString("CNPJ"));
+               registro.setTipo(rs.getString("CPF"));
+               registro.setRG(rs.getString("RG"));
+               lista.add(registro);
+               }
+            } catch (SQLException e) {
+              JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
+           }
+            return lista;
+        }
     
     /* public void localiza
          contrib.setTipo(Contrib.Tipo.valueOf(rs.getString("tipo")));   

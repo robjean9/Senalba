@@ -50,7 +50,7 @@ public class TelaContabil extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         bSindical = new javax.swing.JMenuItem();
         bAssistencial = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,10 +85,15 @@ public class TelaContabil extends javax.swing.JFrame {
 
         jMenu1.add(jMenu3);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem1.setText("Tabela de contribuições");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -99,25 +104,23 @@ public class TelaContabil extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tNome)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(tNomeFantasia))
-                    .addComponent(tCNPJ))
-                .addContainerGap(370, Short.MAX_VALUE))
+                    .addComponent(tCNPJ)
+                    .addComponent(tNomeFantasia))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(tNomeFantasia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(tCNPJ)
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(721, 557));
+        setSize(new java.awt.Dimension(235, 188));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -132,12 +135,16 @@ public class TelaContabil extends javax.swing.JFrame {
 
     private void bAssistencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAssistencialActionPerformed
         // TODO add your handling code here:
-        TelaLancamentoSindical t = new TelaLancamentoSindical();
+        TelaLancamentoAssistencial t = new TelaLancamentoAssistencial();
             t.setNovo(false);
-            tipo = "ASSISTÊNCIAL";
+            tipo = "ASSISTENCIAL";
             t.setEmpresa(bd.localiza(getEmpresa().getCNPJ()));
             t.setVisible(true);
     }//GEN-LAST:event_bAssistencialActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,9 +185,9 @@ public class TelaContabil extends javax.swing.JFrame {
     private javax.swing.JMenuItem bAssistencial;
     private javax.swing.JMenuItem bSindical;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel tCNPJ;
     private javax.swing.JLabel tNome;
     private javax.swing.JLabel tNomeFantasia;

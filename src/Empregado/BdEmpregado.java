@@ -47,7 +47,7 @@ public class BdEmpregado extends bd.Bd {
             ps.setString(13, empregado.getVT());
             ps.setDate(14,new java.sql.Date(empregado.getData().getTime().getTime()));
             ps.setString(15, empregado.getSexo());
-            ps.setBytes(16, )
+            ps.setBytes(16, empregado.getFoto());
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -73,7 +73,7 @@ public class BdEmpregado extends bd.Bd {
             ps.setDate(13,new java.sql.Date(empregado.getData().getTime().getTime()));
             ps.setString(14, empregado.getSexo());
             ps.setString(15, empregado.getCPF());
-
+            ps.setBytes(16, empregado.getFoto());
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -123,6 +123,7 @@ public class BdEmpregado extends bd.Bd {
                 Calendar data = Calendar.getInstance();
                 data.setTime(rs.getDate("data"));
                 registro.setData(data);
+                registro.setFoto(rs.getBytes("foto"));
             }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());

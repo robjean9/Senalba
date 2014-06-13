@@ -246,6 +246,20 @@ public class Empregado {
         this.Sexo = Sexo;
     }
 
+    /**
+     * @return the foto
+     */
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
 
 
 

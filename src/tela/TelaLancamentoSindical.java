@@ -60,7 +60,6 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        tContribuicao = new javax.swing.JTextField();
         tValor = new javax.swing.JTextField();
         tCNPJ = new javax.swing.JFormattedTextField();
         tDataPag = new javax.swing.JFormattedTextField();
@@ -68,15 +67,13 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Contribuição");
+        jLabel1.setText("Contribuição sindical");
 
         jLabel2.setText("CNPJ");
 
         jLabel3.setText("Valor");
 
         jLabel4.setText("Data do Pagamento");
-
-        tContribuicao.setEditable(false);
 
         tCNPJ.setEditable(false);
 
@@ -106,11 +103,10 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tContribuicao, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                     .addComponent(tValor)
                     .addComponent(tCNPJ)
-                    .addComponent(tDataPag))
-                .addContainerGap(220, Short.MAX_VALUE))
+                    .addComponent(tDataPag, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bSalvar)
@@ -119,10 +115,8 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tContribuicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -135,7 +129,7 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(bSalvar)
                 .addGap(51, 51, 51))
         );
@@ -193,7 +187,6 @@ public class TelaLancamentoSindical extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JFormattedTextField tCNPJ;
-    private javax.swing.JTextField tContribuicao;
     private javax.swing.JFormattedTextField tDataPag;
     private javax.swing.JTextField tValor;
     // End of variables declaration//GEN-END:variables
